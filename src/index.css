@@ -1,13 +1,11 @@
 /* Global */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root{
 	--color-darkBlue:#495867;
 	--color-skyBlue:#bdd5ea;
 	--color-blue:#577399;
 	--color-lightGreen:#D1F0B1;
-
-
-	
-
 }
 * {
     margin: 0;
@@ -19,6 +17,10 @@ html {
     box-sizing: border-box;
     font-family: sans-serif;
     font-size: 10px;
+}
+
+h1, h4 {
+	font-family: 'Roboto', sans-serif;
 }
  
 a {
@@ -74,6 +76,7 @@ opacity: 0.8;
 
 .main-content {
 	margin-top: 70px;
+	padding: 0px 10px;
 }
 
 .flex-center {
@@ -81,3 +84,5 @@ opacity: 0.8;
 	justify-content: center;
 
 }
+
+

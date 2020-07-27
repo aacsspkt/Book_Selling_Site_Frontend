@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+import './Login.css'
+
 
 export default class LoginPanel extends Component {
     constructor(props) {
@@ -30,8 +32,9 @@ export default class LoginPanel extends Component {
 			return <Redirect to='/' />;
 		}
         return (
-            <div className='main-content flex-center'>
+            <div className="flex-center">
 				<div>
+				
 					<LoginForm 
 						username={this.state.username}
 						password={this.state.password}
@@ -39,6 +42,7 @@ export default class LoginPanel extends Component {
 						handleLogin={this.handleLogin}
 					/>
 					<SignUp/>
+				
 				</div>
             </div>
         )
@@ -48,8 +52,8 @@ export default class LoginPanel extends Component {
 function SignUp() {
     return (
         <div>
-            <p>Don't have an account?</p>
-            <button className="btnOpt">Sign Up</button>
+            <p id='link-signUp'>Don't have an account? <Link to='/register'>Sign Up</Link></p>
+            
         </div>
     )
 }
@@ -57,8 +61,8 @@ function SignUp() {
 function LoginForm(props) {
     return (
         <div>
-            <h1>Login in to B-Share</h1>
-            <h4>Enter your details below</h4>
+            <h1 id='login-h1'>Login in to B-Share</h1>
+            <h4 id='login-h4'>Enter your details below</h4>
             <form onSubmit={props.handleLogin}>
                 <label htmlFor='username'>Username</label>
                 <input type='text' id='username' name='username'

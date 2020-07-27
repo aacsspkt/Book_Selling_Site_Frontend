@@ -1,7 +1,31 @@
-.wrapper {
-	width: 100%;
-	display: flex;
-	align-content: center;
-	height: 100vh;
-  }
+#login-h1 {
+	text-align: center;
+	font-size: 25px;
+	padding-top: 50px;
+	padding-bottom: 30px;
+}
+
+#login-h4 {
+	font-size: 15px;
+	font-weight: normal;
+	padding-bottom: 30px;
+}
+#link-signUp {
+	font-size: 14px;
+	font-family: 'Rototo', sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+	#login-h1{ 
+		padding: 0;
+	}
+	#login-h4 {
+	
+		padding: 20px 0px;
+	}
+}
+
+
+
+
 
