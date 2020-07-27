@@ -30,14 +30,16 @@ export default class LoginPanel extends Component {
 			return <Redirect to='/' />;
 		}
         return (
-            <div>
-                <SignUp/>
-				<LoginForm 
-					username={this.state.username}
-					password={this.state.password}
-					handleChange={this.handleChange}
-					handleLogin={this.handleLogin}
-				/>
+            <div className='main-content flex-center'>
+				<div>
+					<LoginForm 
+						username={this.state.username}
+						password={this.state.password}
+						handleChange={this.handleChange}
+						handleLogin={this.handleLogin}
+					/>
+					<SignUp/>
+				</div>
             </div>
         )
     }
@@ -47,7 +49,7 @@ function SignUp() {
     return (
         <div>
             <p>Don't have an account?</p>
-            <button>Sign Up</button>
+            <button className="btnOpt">Sign Up</button>
         </div>
     )
 }
@@ -68,9 +70,11 @@ function LoginForm(props) {
 					value={props.password}
 					onChange={props.handleChange}
 					/>
-                <button>Login</button>
-
+				<div className="flex-center">
+					<button className="btnMain">Login</button>
+				</div>
             </form>
+		
         </div>
     )
 }
