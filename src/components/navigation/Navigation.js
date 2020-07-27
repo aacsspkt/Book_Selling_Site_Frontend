@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './Navigation.css';
 import logo from './logo.png'
 
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -11,11 +12,11 @@ export default class Navigation extends Component {
 
         this.state = {
 			activeNav: '',
-			isHamburgerMenuActive: 'false'
+			toggle: 'false'
 		}	
 	}
 
-	makeResponsive = () => {
+	toggleMenu = () => {
 
 		let nav = document.getElementById("nav");
 		if (nav.className === "nav") {
@@ -25,14 +26,15 @@ export default class Navigation extends Component {
 		}
 
 		let main = document.querySelector('.main-content');
-		if (this.state.isHamburgerMenuActive){
+		if (this.state.toggle){
 			main.style.marginTop="10px";
-			this.state.isHamburgerMenuActive = !this.state.isHamburgerMenuActive;
+			this.setState({toggle: !this.state.toggle});
 			return;
 		} 
 
 		main.style.marginTop="70px";
-		this.state.isHamburgerMenuActive = !this.state.isHamburgerMenuActive;
+		this.setState({toggle: !this.state.toggle});
+		
 	
 	}
     render() {
@@ -44,7 +46,7 @@ export default class Navigation extends Component {
                     <a>News</a>
                     <a>Contact</a>
                     <a>About</a>
-                    <a className='icon' onClick={this.makeResponsive}>
+                    <a className='icon' onClick={this.toggleMenu}>
                      <FontAwesomeIcon icon={faBars} />
                     </a>
                 </div>
