@@ -18,10 +18,9 @@ export default class LoginPanel extends Component {
 	
 	handleLogin = e => {
 		e.preventDefault();
-		console.log("handleLogin: " + this.state.username + " " + this.state.password);
 		axios.post('http://localhost:3001/api/users/login', this.state)
 		.then(res => {
-			console.log(res);
+			console.log(res.data.token);
 			localStorage.setItem('token', res.data.token);
 			this.setState({ loggedIn: true});
 		}).catch(err => console.log(err));		
