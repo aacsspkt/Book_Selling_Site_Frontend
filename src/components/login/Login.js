@@ -7,7 +7,6 @@ import './Login.css'
 export default class LoginPanel extends Component {
     constructor(props) {
         super(props)
-
         this.state = {
             username: '',
 			password: '',

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import './District.css'
 
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default class District extends Component {
 	constructor(props) {
@@ -25,8 +26,24 @@ export default class District extends Component {
 		e.preventDefault();
 		axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
 		.then(res => {
-			console.log(res);
+			this.setState({
+				districts: [... this.state.districts, res.data],
+				name: ''
+			})
 		}).catch(err => console.log(err.response));
+	}
+	handleDelete = districtId => {
+		axios.delete(`http://localhost:3001/api/districts/${districtId}`, this.state.config)
+		.then(res => {
+			console.log(res.data);
+			const filteredDistrict = this.state.districts.filter(district => {
+				return district._id !== districtId;
+			});
+			console.log(filteredDistrict);
+			this.setState({
+				districts: filteredDistrict
+			});
+		})
 	}
 
 	componentDidMount() {
@@ -34,8 +51,7 @@ export default class District extends Component {
 		.then(res => {
 			console.log(res.data);
 			this.setState({districts: res.data})
-			
-		})
+		}).catch(err => console.log(err.response));
 	}
 	
 	render() {
@@ -50,6 +66,7 @@ export default class District extends Component {
 					/>
 					<DistrictList 
 					districts={this.state.districts}
+					handleDelete={this.handleDelete}
 					/>
 				</div>
 			</div>
@@ -78,7 +95,10 @@ function DistrictList(props) {
 			<ul className='ul-list'>
 				{
 					props.districts.map(district => {
-						return <div className='row'> <li className='list' key={district._id}>{district.name}</li> </div>
+						return <div className='row'  key={district._id}>
+									<li className='list'>{district.name}</li>
+									<FontAwesomeIcon onClick={() => props.handleDelete(district._id)} className='del' icon={faTimes} />
+							   </div>
 					})
 				}
 			</ul>

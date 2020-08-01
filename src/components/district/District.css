@@ -1,11 +1,20 @@
 
 #district-h1 {
-	font-size: 25px;
-	padding-top: 10px;
-	padding-bottom: 20px;
+	font-size: 2.5rem;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
 }
 
 .districtForm {
-	margin-bottom: 20px;
+	margin-bottom: 2rem;
+}
+.del {
+	font-size: 1.8rem;
+	margin-right: 1rem;
+}
+
+.del:hover {
+	opacity: 0.5;
+
 }
 
