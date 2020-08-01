@@ -5,6 +5,7 @@
 	--color-darkBlue:#495867;
 	--color-skyBlue:#bdd5ea;
 	--color-blue:#577399;
+	--color-grey:#ccc;
 	--color-lightGreen:#D1F0B1;
 }
 * {
@@ -31,18 +32,26 @@ a {
 	outline: none;
   }
 
+li {
+	list-style-type: none;
+}
+
+label {
+	font-size: 1.3rem
+}
+
 input[type=text], input[type=password]{
 	width: 100%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	box-sizing: border-box;
-	border: 2px solid #ccc;
+	border: 2px solid var(--color-grey);
 	-webkit-transition: 0.5s;
 	transition: 0.5s;
 	outline: none;
   }
 input[type=text]:hover, input[type=password]:hover {
-	border: 2px solid var(--color-skyBlue);
+	border: 2px solid var(--color-blue);
 }
 
 input[type=text]:focus, input[type=password]:focus {
@@ -51,12 +60,23 @@ input[type=text]:focus, input[type=password]:focus {
 
 .btnMain {
 background-color: var(--color-blue);
-color: white;
-padding: 14px 30px;
-margin: 8px 0;
-border: none;
-border-radius: 10px;
-cursor: pointer;
+	color: white;
+	padding: 14px 30px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.btnMainWide {
+	background-color: var(--color-blue);
+	width: 100%;
+	color: white;
+	padding: 14px 30px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
 }
 
 .btnOpt {
@@ -70,8 +90,8 @@ cursor: pointer;
 	}
 	
   
-.btnMain:hover, .btnOpt:hover {
-opacity: 0.8;
+.btnMain:hover, .btnOpt:hover, .btnMainWide:hover {
+	opacity: 0.8;
 }
 
 .main-content {
@@ -85,4 +105,44 @@ opacity: 0.8;
 
 }
 
+.row {
+    display: flex;
+    justify-content: space-between;
+    border:2px solid var(--color-grey);
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+	align-items: center;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+    width: 100%;
+}
 
+.row:hover {
+    border:2px solid var(--color-blue);
+
+}
+
+.list {
+	padding: 10px;
+	font-size: 1.5rem;
+}
+
+.container {
+	width: 65%;
+}
+
+@media screen and (max-width: 900px) {
+	.container {
+		width:90%
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.container {
+		width: 100%
+	}
+	#district-h1{ 
+		padding: 0;
+	}
+
+}

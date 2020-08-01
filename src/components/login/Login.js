@@ -32,7 +32,7 @@ export default class LoginPanel extends Component {
 		}
         return (
             <div className="flex-center">
-				<div>
+				<div className="container">
 				
 					<LoginForm 
 						username={this.state.username}
