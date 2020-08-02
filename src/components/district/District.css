@@ -5,16 +5,33 @@
 	padding-bottom: 2rem;
 }
 
+.btnJoin {
+	background-color: #577399;
+	width: 100%;
+	color: white;
+	padding: 14px 30px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+}
+#btnCancel {
+	background-color: #fe5f55;
+}
+
 .districtForm {
 	margin-bottom: 2rem;
 }
-.del {
+.del, .edit {
 	font-size: 1.8rem;
 	margin-right: 1rem;
+	margin-left: 1rem;
+	color: grey;
 }
 
-.del:hover {
-	opacity: 0.5;
+
+
+.del:hover, .edit:hover {
+	color: black;
 
 }
 
