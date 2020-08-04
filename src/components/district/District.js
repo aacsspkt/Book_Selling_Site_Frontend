@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './District.css'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -84,8 +83,9 @@ export default class District extends Component {
 		.then(res => {
 			console.log(res.data);
 			this.setState({
-				districts: ''
+				districts: []
 			});
+			this.hideModal()
 		}).catch(err => console.log(err));
 	}
 
@@ -97,17 +97,14 @@ export default class District extends Component {
 			districtId: ''
 		});
 	};
+		
+	displayModal = () => {
+		document.getElementById("modal-box").style.display="block"
+	};
 
-	getConfirmation = () => {
-			// var retVal = confirm("Do you want to continue ?");
-			// if( retVal == true ) {
-			// document.write ("User wants to continue!");
-			// return true;
-			// } else {
-			// document.write ("User does not want to continue!");
-			// return false;
-			// }
-		}
+	hideModal = () => {
+		document.getElementById("modal-box").style.display="none";
+	};
 
 	componentDidMount() {
 		axios.get('http://localhost:3001/api/districts', this.state.config)
@@ -121,9 +118,15 @@ export default class District extends Component {
 		return (
 			<div className='flex-center'>
 				<div className='container'>
+					<ModalBox
+					displayModal={this.displayModal}
+					hideModal={this.hideModal}
+					handleDeleteAll={this.handleDeleteAll}
+					 />
 					<div id='top'>
 						<h1 id='district-h1'>Manage District</h1>
-						<button id="btnDeleteAll" className='btnWarning' onClick={this.getConfirmation}>Delete All</button>
+						<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
+							Delete All</button>
 					</div>
 				
 					<DistrictForm
@@ -144,6 +147,25 @@ export default class District extends Component {
 	}
 }
 
+function ModalBox(props) {
+	return (
+		<div>
+			<div id='modal-box' class='modal'>
+				<span onClick={props.hideModal} class='close' title='Close Modal'>&times;</span>
+				<form class='modal-content'>
+					<div class='modal-container'>
+						<h1>Delete District</h1>
+						<p>Are you sure you want to delete all the Districts?</p>
+						<div class='clearfix'>
+							<button onClick={props.hideModal} type='button' class='modal-btn cancelbtn'>Cancel</button>
+							<button onClick={props.handleDeleteAll} type='button' class='modal-btn deletebtn'>Delete</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	)
+}
 
  function DistrictForm(props) {
 	return (

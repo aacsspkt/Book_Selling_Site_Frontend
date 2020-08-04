@@ -17,6 +17,8 @@ export default function App() {
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />
 					<Route path='/register' component={Register} />
+					
+
 				</BrowserRouter>	
 			</div>
 		</div>
