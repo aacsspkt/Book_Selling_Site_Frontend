@@ -7,6 +7,7 @@
 	--color-blue:#577399;
 	--color-grey:#ccc;
 	--color-lightGreen:#D1F0B1;
+	--color-pinkRed: #fe5f55;
 }
 * {
     margin: 0;
@@ -89,6 +90,15 @@ background-color: var(--color-blue);
 	cursor: pointer;
 	}
 	
+.btnWarning {
+	background-color: var(--color-pinkRed);
+	color: white;
+	padding: 10px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	}
   
 .btnMain:hover, .btnOpt:hover, .btnMainWide:hover {
 	opacity: 0.8;

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import './District.css'
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 export default class District extends Component {
 	constructor(props) {
@@ -11,10 +10,12 @@ export default class District extends Component {
 	
 		this.state = {
 			name:'',
-			districts: [],
+			districts: [], //created for get req.
 			config:{
 				headers: {'Authorization': localStorage.getItem('token')}
 			},
+			districtId: '', //created for update
+			isEdit: false
 		}
 	}
 
@@ -23,15 +24,46 @@ export default class District extends Component {
 	}
 
 	handlePost = e => {
-		e.preventDefault();
-		axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
-		.then(res => {
-			this.setState({
-				districts: [... this.state.districts, res.data],
-				name: ''
-			})
-		}).catch(err => console.log(err.response));
+		if (!this.state.isEdit) {
+			e.preventDefault();
+			axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
+			.then(res => {
+				this.setState({
+					districts: [... this.state.districts, res.data],
+					name: ''
+				})
+			}).catch(err => console.log(err.response));
+		} else {
+			e.preventDefault();
+			axios.put(`http://localhost:3001/api/districts/${this.state.districtId}`, {name: this.state.name}, this.state.config)
+			.then(res => {
+				const updatedDistrict = this.state.districts.map(district => {
+					if (this.state.districtId === district._id) {
+						district.name = this.state.name
+					}
+					return district;
+				})
+				this.setState({
+					districts: updatedDistrict,
+					name: '',
+					isEdit: 'false',
+					districtId: ''
+				})
+			}).catch(err => console.log(err.response));
+		}
 	}
+
+	editDistrict = districtId => {
+		console.log(districtId);
+		this.setState({
+			name: this.state.districts.find(district => {
+				return district._id === districtId;
+			}).name,
+			districtId: districtId,
+			isEdit: true
+		});
+	}
+
 	handleDelete = districtId => {
 		axios.delete(`http://localhost:3001/api/districts/${districtId}`, this.state.config)
 		.then(res => {
@@ -43,8 +75,36 @@ export default class District extends Component {
 			this.setState({
 				districts: filteredDistrict
 			});
-		})
+		}).catch(err => console.log(err));
 	}
+
+	handleDeleteAll = () => {
+		axios.delete('http://localhost:3001/api/districts/', this.state.config)
+		.then(res => {
+			console.log(res.data);
+			this.setState({
+				districts: []
+			});
+			this.hideModal()
+		}).catch(err => console.log(err));
+	}
+
+	clearText = e => {
+		e.preventDefault();
+		this.setState({
+			name: '',
+			isEdit: false,
+			districtId: ''
+		});
+	};
+		
+	displayModal = () => {
+		document.getElementById("modal-box").style.display="block"
+	};
+
+	hideModal = () => {
+		document.getElementById("modal-box").style.display="none";
+	};
 
 	componentDidMount() {
 		axios.get('http://localhost:3001/api/districts', this.state.config)
@@ -58,15 +118,28 @@ export default class District extends Component {
 		return (
 			<div className='flex-center'>
 				<div className='container'>
-					<h1 id='district-h1'>Manage District</h1>
+					<ModalBox
+					displayModal={this.displayModal}
+					hideModal={this.hideModal}
+					handleDeleteAll={this.handleDeleteAll}
+					 />
+					<div id='top'>
+						<h1 id='district-h1'>Manage District</h1>
+						<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
+							Delete All</button>
+					</div>
+				
 					<DistrictForm
 					handlePost={this.handlePost}
 					handleChange={this.handleChange}
 					name={this.state.name}
+					clearText={this.clearText}
+					isEdit={this.state.isEdit}
 					/>
 					<DistrictList 
 					districts={this.state.districts}
 					handleDelete={this.handleDelete}
+					editDistrict={this.editDistrict}
 					/>
 				</div>
 			</div>
@@ -74,17 +147,47 @@ export default class District extends Component {
 	}
 }
 
+function ModalBox(props) {
+	return (
+		<div>
+			<div id='modal-box' class='modal'>
+				<span onClick={props.hideModal} class='close' title='Close Modal'>&times;</span>
+				<form class='modal-content'>
+					<div class='modal-container'>
+						<h1>Delete District</h1>
+						<p>Are you sure you want to delete all the Districts?</p>
+						<div class='clearfix'>
+							<button onClick={props.hideModal} type='button' class='modal-btn cancelbtn'>Cancel</button>
+							<button onClick={props.handleDeleteAll} type='button' class='modal-btn deletebtn'>Delete</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	)
+}
 
  function DistrictForm(props) {
 	return (
-		<form className='districtForm' onSubmit={props.handlePost}>
+		<form id='districtForm'>
 				<label htmlFor='name'>District Name</label>
 				<input type='text' id='name' name='name'
 				value={props.name}
 				onChange={props.handleChange}/>
-				<div className='flex-center'>
-					<button className='btnMainWide'>Add</button>
-				</div>
+					
+				{
+					props.isEdit ? (
+						<div className='flex-center'> 
+							<button className='btnJoin' onClick={props.handlePost}>Update</button>
+							<button id='btnCancel' className='btnJoin' onClick={props.clearText}>Cancel</button>
+						</div>
+					) : (	
+						<div className='flex-center'>
+							<button className='btnJoin' onClick={props.handlePost}>Add</button>
+							<button id='btnCancel' className='btnJoin' onClick={props.clearText}>Clear</button>
+						</div>
+					) 
+				}			
 		</form>
 	)
 }
@@ -97,7 +200,10 @@ function DistrictList(props) {
 					props.districts.map(district => {
 						return <div className='row'  key={district._id}>
 									<li className='list'>{district.name}</li>
+									<div className='icons'>
+									<FontAwesomeIcon className='edit' onClick={() => props.editDistrict(district._id)} icon={faEdit} />
 									<FontAwesomeIcon onClick={() => props.handleDelete(district._id)} className='del' icon={faTimes} />
+									</div>
 							   </div>
 					})
 				}
