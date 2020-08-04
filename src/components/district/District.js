@@ -52,7 +52,6 @@ export default class District extends Component {
 				})
 			}).catch(err => console.log(err.response));
 		}
-	
 	}
 
 	editDistrict = districtId => {
@@ -77,7 +76,17 @@ export default class District extends Component {
 			this.setState({
 				districts: filteredDistrict
 			});
-		})
+		}).catch(err => console.log(err));
+	}
+
+	handleDeleteAll = () => {
+		axios.delete('http://localhost:3001/api/districts/', this.state.config)
+		.then(res => {
+			console.log(res.data);
+			this.setState({
+				districts: ''
+			});
+		}).catch(err => console.log(err));
 	}
 
 	clearText = e => {
@@ -87,7 +96,18 @@ export default class District extends Component {
 			isEdit: false,
 			districtId: ''
 		});
-	}
+	};
+
+	getConfirmation = () => {
+			// var retVal = confirm("Do you want to continue ?");
+			// if( retVal == true ) {
+			// document.write ("User wants to continue!");
+			// return true;
+			// } else {
+			// document.write ("User does not want to continue!");
+			// return false;
+			// }
+		}
 
 	componentDidMount() {
 		axios.get('http://localhost:3001/api/districts', this.state.config)
@@ -101,7 +121,11 @@ export default class District extends Component {
 		return (
 			<div className='flex-center'>
 				<div className='container'>
-					<h1 id='district-h1'>Manage District</h1>
+					<div id='top'>
+						<h1 id='district-h1'>Manage District</h1>
+						<button id="btnDeleteAll" className='btnWarning' onClick={this.getConfirmation}>Delete All</button>
+					</div>
+				
 					<DistrictForm
 					handlePost={this.handlePost}
 					handleChange={this.handleChange}
@@ -123,7 +147,7 @@ export default class District extends Component {
 
  function DistrictForm(props) {
 	return (
-		<form className='districtForm'>
+		<form id='districtForm'>
 				<label htmlFor='name'>District Name</label>
 				<input type='text' id='name' name='name'
 				value={props.name}
@@ -141,10 +165,7 @@ export default class District extends Component {
 							<button id='btnCancel' className='btnJoin' onClick={props.clearText}>Clear</button>
 						</div>
 					) 
-				}
-				
-				
-								
+				}			
 		</form>
 	)
 }
