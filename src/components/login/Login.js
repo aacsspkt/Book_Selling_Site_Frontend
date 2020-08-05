@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import axios from 'axios'
+import Axios from 'axios'
 import { Redirect, Link } from 'react-router-dom';
 import './Login.css'
 
@@ -16,7 +16,7 @@ export default class LoginPanel extends Component {
 	
 	handleLogin = e => {
 		e.preventDefault();
-		axios.post('http://localhost:3001/api/users/login', this.state)
+		Axios.post('http://localhost:3001/api/users/login', this.state)
 		.then(res => {
 			console.log(res.data.token);
 			localStorage.setItem('token', res.data.token);
