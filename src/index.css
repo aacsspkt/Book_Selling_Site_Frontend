@@ -59,6 +59,10 @@ input[type=text]:focus, input[type=password]:focus {
 	border: 2px solid black;
 }
 
+button:hover {
+	opacity: 0.8;
+}
+
 .btnMain {
 background-color: var(--color-blue);
 	color: white;

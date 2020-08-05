@@ -1,11 +1,24 @@
 import React, {Component} from 'react'
-
+import './Register.css'
 export default class Register extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {}
-    }
+        this.state = {
+			firstName: '',
+			lastName: '',
+			address: {
+				streetAddress: '',
+				cityName: '',
+				areaLocation: '',
+			}
+		}
+	}
+
+	handleChange = e => {
+		this.setState({[e.target.name]: e.target.value})
+	}
+
     render() {
         return (
             <div>
@@ -14,32 +27,30 @@ export default class Register extends Component {
                     <h4 id='login-h4'>Enter your details below</h4>
                     <form>
                         <label htmlFor='firstName'>First name</label>
-                        <input type='text' id='firstName' name='firstName'/>
+                        <input type='text' id='firstName' name='firstName' onChange={this.handleChange}/>
 
                         <label htmlFor='lastName'>lastName</label>
-                        <input type='text' id='lastName' name='lastName'/>
+                        <input type='text' id='lastName' name='lastName' onChange={this.handleChange}/>
 
                         <label htmlFor='streetAddress'>Street Address</label>
-                        <input type='text' id='streetAddress' name='streetAddress'/>
+                        <input type='text' id='streetAddress' name='streetAddress'onChange={this.handleChange}/>
 
                         <label htmlFor='cityName'>City Name</label>
                         <input type='text' id='cityName' name='cityName'/>
 
                         <label htmlFor='areaLocation'>Area Location</label>
-                        <input type='text' id='areaLocation' name='areaLocation'/>
+                        <input type='text' id='areaLocation' name='areaLocation' onChange={this.handleChange}/>
 
-                        <label htmlFor='mobileNo'>Mobile Number</label>
+                        {/* <label htmlFor='mobileNo'>Mobile Number</label>
                         <input type='text' id='mobileNo' name='mobileNo'/>
 
                         <label htmlFor='phoneNo'>Phone No</label>
                         <input type='text' id='phoneNo' name='phoneNo'/>
 
-						<label htmlFor='hideContacts'>Hide contacts</label>
-                        <input type='text' id='hideContacts' name='hideContacts'/>
-{/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_checkbox */}
-						<label htmlFor='profilePicture'>Profile Picture</label>
-                        <input type='text' id='profilePicture' name='profilePicture'/>
-
+						<label class="checkbox-container">Hide contacts
+							<input type="checkbox"/>
+							<span class="checkmark"></span>
+						</label> */}
                         <div className='flex-center'>
                             <button className='btnMain'>Next</button>
                         </div>
