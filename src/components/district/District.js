@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import Axios from 'axios'
 import './District.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
+import ModalBox from './ModalBox';
+
 
 export default class District extends Component {
 	constructor(props) {
@@ -26,7 +28,7 @@ export default class District extends Component {
 	handlePost = e => {
 		if (!this.state.isEdit) {
 			e.preventDefault();
-			axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
+			Axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
 			.then(res => {
 				this.setState({
 					districts: [... this.state.districts, res.data],
@@ -35,7 +37,7 @@ export default class District extends Component {
 			}).catch(err => console.log(err.response));
 		} else {
 			e.preventDefault();
-			axios.put(`http://localhost:3001/api/districts/${this.state.districtId}`, {name: this.state.name}, this.state.config)
+			Axios.put(`http://localhost:3001/api/districts/${this.state.districtId}`, {name: this.state.name}, this.state.config)
 			.then(res => {
 				const updatedDistrict = this.state.districts.map(district => {
 					if (this.state.districtId === district._id) {
@@ -65,7 +67,7 @@ export default class District extends Component {
 	}
 
 	handleDelete = districtId => {
-		axios.delete(`http://localhost:3001/api/districts/${districtId}`, this.state.config)
+		Axios.delete(`http://localhost:3001/api/districts/${districtId}`, this.state.config)
 		.then(res => {
 			console.log(res.data);
 			const filteredDistrict = this.state.districts.filter(district => {
@@ -79,7 +81,7 @@ export default class District extends Component {
 	}
 
 	handleDeleteAll = () => {
-		axios.delete('http://localhost:3001/api/districts/', this.state.config)
+		Axios.delete('http://localhost:3001/api/districts/', this.state.config)
 		.then(res => {
 			console.log(res.data);
 			this.setState({
@@ -107,7 +109,7 @@ export default class District extends Component {
 	};
 
 	componentDidMount() {
-		axios.get('http://localhost:3001/api/districts', this.state.config)
+		Axios.get('http://localhost:3001/api/districts', this.state.config)
 		.then(res => {
 			console.log(res.data);
 			this.setState({districts: res.data})
@@ -118,11 +120,15 @@ export default class District extends Component {
 		return (
 			<div className='flex-center'>
 				<div className='container'>
-					<ModalBox
+					{/* <ModalBox
 					displayModal={this.displayModal}
 					hideModal={this.hideModal}
 					handleDeleteAll={this.handleDeleteAll}
-					 />
+					 /> */}
+					 <ModalBox 
+					 	displayModal={this.displayModal}
+						 hideModal={this.hideModal}
+						 handleDeleteAll={this.handleDeleteAll}/>
 					<div id='top'>
 						<h1 id='district-h1'>Manage District</h1>
 						<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
@@ -147,25 +153,25 @@ export default class District extends Component {
 	}
 }
 
-function ModalBox(props) {
-	return (
-		<div>
-			<div id='modal-box' class='modal'>
-				<span onClick={props.hideModal} class='close' title='Close Modal'>&times;</span>
-				<form class='modal-content'>
-					<div class='modal-container'>
-						<h1>Delete District</h1>
-						<p>Are you sure you want to delete all the Districts?</p>
-						<div class='clearfix'>
-							<button onClick={props.hideModal} type='button' class='modal-btn cancelbtn'>Cancel</button>
-							<button onClick={props.handleDeleteAll} type='button' class='modal-btn deletebtn'>Delete</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	)
-}
+// function ModalBox(props) {
+// 	return (
+// 		<div>
+// 			<div id='modal-box' class='modal'>
+// 				<span onClick={props.hideModal} class='close' title='Close Modal'>&times;</span>
+// 				<form class='modal-content'>
+// 					<div class='modal-container'>
+// 						<h1>Delete District</h1>
+// 						<p>Are you sure you want to delete all the Districts?</p>
+// 						<div class='clearfix'>
+// 							<button onClick={props.hideModal} type='button' class='modal-btn cancelbtn'>Cancel</button>
+// 							<button onClick={props.handleDeleteAll} type='button' class='modal-btn deletebtn'>Delete</button>
+// 						</div>
+// 					</div>
+// 				</form>
+// 			</div>
+// 		</div>
+// 	)
+// }
 
  function DistrictForm(props) {
 	return (

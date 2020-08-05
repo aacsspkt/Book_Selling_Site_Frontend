@@ -1,10 +1,12 @@
 import React, {Component} from 'react'
 import './Register.css'
+import BasicAutoSuggest from './BasicAutoSuggest'
 export default class Register extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+			districts: [],
 			firstName: '',
 			lastName: '',
 			address: {
@@ -39,7 +41,9 @@ export default class Register extends Component {
                         <input type='text' id='cityName' name='cityName'/>
 
                         <label htmlFor='areaLocation'>Area Location</label>
-                        <input type='text' id='areaLocation' name='areaLocation' onChange={this.handleChange}/>
+
+						<BasicAutoSuggest />
+						
 
                         {/* <label htmlFor='mobileNo'>Mobile Number</label>
                         <input type='text' id='mobileNo' name='mobileNo'/>
