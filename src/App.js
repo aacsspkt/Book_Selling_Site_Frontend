@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './components/Home';
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
-import Register from './components/register/Register'
+import Profile from './components/profile/Profile'
+import ProfileContd from './components/profile/ProfileContd'
 import District from './components/district/District'
 
 
@@ -16,7 +17,8 @@ export default function App() {
 					<Route path='/' exact component={Home} />
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />
-					<Route path='/register' component={Register} />
+					<Route path='/profile' component={Profile} />
+					<Route path='/profilecontd' component={ProfileContd} />
 					
 
 				</BrowserRouter>	

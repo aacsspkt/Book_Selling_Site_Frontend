@@ -31,7 +31,7 @@ export default class District extends Component {
 			Axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
 			.then(res => {
 				this.setState({
-					districts: [... this.state.districts, res.data],
+					districts: [...this.state.districts, res.data],
 					name: ''
 				})
 			}).catch(err => console.log(err.response));
@@ -120,11 +120,6 @@ export default class District extends Component {
 		return (
 			<div className='flex-center'>
 				<div className='container'>
-					{/* <ModalBox
-					displayModal={this.displayModal}
-					hideModal={this.hideModal}
-					handleDeleteAll={this.handleDeleteAll}
-					 /> */}
 					 <ModalBox 
 					 	displayModal={this.displayModal}
 						 hideModal={this.hideModal}
@@ -152,26 +147,6 @@ export default class District extends Component {
 		)
 	}
 }
-
-// function ModalBox(props) {
-// 	return (
-// 		<div>
-// 			<div id='modal-box' class='modal'>
-// 				<span onClick={props.hideModal} class='close' title='Close Modal'>&times;</span>
-// 				<form class='modal-content'>
-// 					<div class='modal-container'>
-// 						<h1>Delete District</h1>
-// 						<p>Are you sure you want to delete all the Districts?</p>
-// 						<div class='clearfix'>
-// 							<button onClick={props.hideModal} type='button' class='modal-btn cancelbtn'>Cancel</button>
-// 							<button onClick={props.handleDeleteAll} type='button' class='modal-btn deletebtn'>Delete</button>
-// 						</div>
-// 					</div>
-// 				</form>
-// 			</div>
-// 		</div>
-// 	)
-// }
 
  function DistrictForm(props) {
 	return (

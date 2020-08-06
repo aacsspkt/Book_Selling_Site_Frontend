@@ -63,6 +63,19 @@ button:hover {
 	opacity: 0.8;
 }
 
+.h1-center {
+	text-align: center;
+	font-size: 25px;
+	padding-top: 50px;
+	padding-bottom: 30px;
+}
+
+.h4-center {
+	font-size: 15px;
+	font-weight: bold;
+	padding-bottom: 20px;
+}
+
 .btnMain {
 background-color: var(--color-blue);
 	color: white;

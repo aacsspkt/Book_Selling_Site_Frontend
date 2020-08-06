@@ -58,8 +58,8 @@ function SignUp() {
 function LoginForm(props) {
     return (
         <div>
-            <h1 id='login-h1'>Login in to B-Share</h1>
-            <h4 id='login-h4'>Enter your details below</h4>
+            <h1 className='h1-center'>Login in to B-Share</h1>
+            <h4 id='h4-center'>Enter your details below</h4>
             <form onSubmit={props.handleLogin}>
                 <label htmlFor='username'>Username</label>
                 <input type='text' id='username' name='username'

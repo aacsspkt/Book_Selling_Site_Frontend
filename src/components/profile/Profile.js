@@ -1,19 +1,18 @@
 import React, {Component} from 'react'
-import './Register.css'
+import './Profile.css'
+import { Redirect} from 'react-router-dom';
 import BasicAutoSuggest from './BasicAutoSuggest'
 export default class Register extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-			districts: [],
 			firstName: '',
 			lastName: '',
-			address: {
-				streetAddress: '',
-				cityName: '',
-				areaLocation: '',
-			}
+			streetAddress: '',
+			cityName: '',
+			areaLocation: '',
+			submit: false
 		}
 	}
 
@@ -21,13 +20,38 @@ export default class Register extends Component {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
+	getDistrictId = (districtId) => {
+		this.setState({areaLocation: districtId});
+	}
+
+	setCookie = (name, value) => {
+		var today = new Date();
+		var expiry = new Date(today.getTime() + 1 * 24 * 3600 * 1000); 
+	  
+		document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+
+	}
+
+	storeValues = (e) => {
+	  e.preventDefault();
+	  this.setCookie("firstName", this.state.firstName);
+	  this.setCookie("lastName", this.state.lastName);
+	  this.setCookie("streetAddress", this.state.streetAddress);
+	  this.setCookie("cityName", this.state.cityName);
+	  this.setCookie("areaLocation", this.state.areaLocation);
+	  this.setState({submit: true})
+	}
+
     render() {
+		if (this.state.submit) {
+			return <Redirect to='/profileSecond' />;
+		}
         return (
-            <div>
-                <div>
-                    <h1 id='login-h1'>Register to B-Share</h1>
-                    <h4 id='login-h4'>Enter your details below</h4>
-                    <form>
+            <div className='flex-center'>
+                <div className='container'>
+                    <h1 className='h1-center'>Register to B-Share</h1>
+                    <h4 className='h4-center'>Enter your details below</h4>
+                    <form onSubmit={this.storeValues}>
                         <label htmlFor='firstName'>First name</label>
                         <input type='text' id='firstName' name='firstName' onChange={this.handleChange}/>
 
@@ -38,11 +62,13 @@ export default class Register extends Component {
                         <input type='text' id='streetAddress' name='streetAddress'onChange={this.handleChange}/>
 
                         <label htmlFor='cityName'>City Name</label>
-                        <input type='text' id='cityName' name='cityName'/>
+                        <input type='text' id='cityName' name='cityName' onChange={this.handleChange} />
 
-                        <label htmlFor='areaLocation'>Area Location</label>
+                        <label htmlFor='areaLocation'>District</label>
 
-						<BasicAutoSuggest />
+						<BasicAutoSuggest 
+							getDistrictId={this.getDistrictId}
+						/>
 						
 
                         {/* <label htmlFor='mobileNo'>Mobile Number</label>
@@ -55,6 +81,7 @@ export default class Register extends Component {
 							<input type="checkbox"/>
 							<span class="checkmark"></span>
 						</label> */}
+
                         <div className='flex-center'>
                             <button className='btnMain'>Next</button>
                         </div>
