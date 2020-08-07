@@ -44,7 +44,7 @@ export default class Register extends Component {
 
     render() {
 		if (this.state.submit) {
-			return <Redirect to='/profileSecond' />;
+			return <Redirect to='/profileContd' />;
 		}
         return (
             <div className='flex-center'>
@@ -69,19 +69,6 @@ export default class Register extends Component {
 						<BasicAutoSuggest 
 							getDistrictId={this.getDistrictId}
 						/>
-						
-
-                        {/* <label htmlFor='mobileNo'>Mobile Number</label>
-                        <input type='text' id='mobileNo' name='mobileNo'/>
-
-                        <label htmlFor='phoneNo'>Phone No</label>
-                        <input type='text' id='phoneNo' name='phoneNo'/>
-
-						<label class="checkbox-container">Hide contacts
-							<input type="checkbox"/>
-							<span class="checkmark"></span>
-						</label> */}
-
                         <div className='flex-center'>
                             <button className='btnMain'>Next</button>
                         </div>

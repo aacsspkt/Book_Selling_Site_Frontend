@@ -91,7 +91,7 @@ export default class District extends Component {
 		}).catch(err => console.log(err));
 	}
 
-	clearText = e => {
+	clearForm = e => {
 		e.preventDefault();
 		this.setState({
 			name: '',
@@ -134,7 +134,7 @@ export default class District extends Component {
 					handlePost={this.handlePost}
 					handleChange={this.handleChange}
 					name={this.state.name}
-					clearText={this.clearText}
+					clearText={this.clearForm}
 					isEdit={this.state.isEdit}
 					/>
 					<DistrictList 

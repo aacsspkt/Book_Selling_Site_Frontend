@@ -20,7 +20,6 @@ export default function App() {
 					<Route path='/profile' component={Profile} />
 					<Route path='/profilecontd' component={ProfileContd} />
 					
-
 				</BrowserRouter>	
 			</div>
 		</div>
