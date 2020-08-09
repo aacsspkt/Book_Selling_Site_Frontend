@@ -13,20 +13,47 @@ export default class ProfileSecond extends Component {
 			 filename: '',
 			 myFile: null,
 			 profileImg: defaultImg,
+			 address: {
+				 firstname: '',
+				 lastname: '',
+				 streetAddress: '',
+				 cityName: '',
+				 areaLocation: ''
+			 }
 
 
 		}
+	}
+
+	getCookieValue = (cname) =>  {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) === ' ') {
+			c = c.substring(1);
+			}
+			if (c.indexOf(name) === 0) {
+			return c.substring(name.length, c.length);
+			}
+		}
+		return "";
 	}
 
 	handlChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
+		this.getCookieValue();
+
 	}
 
 	handleImageChange = e => {
 		this.setState({myFile:e.target.files[0]});
-		console.log(e.target.files[0]);
+		// console.log(e.target.files[0]);
+
+		//Change image src to new Image
 		this.setState({
 			profileImg: URL.createObjectURL(e.target.files[0])
 		})
@@ -36,10 +63,10 @@ export default class ProfileSecond extends Component {
 		this.setState({hideContact: !this.state.hideContact})
 	}
 
-	handleSubmit = e => {
-		e.preventDefault();
+	uploadImg = () => {
 		const formData = new FormData();
-        formData.append('myFile', this.state.file);
+		formData.append('myFile', this.state.myFile);
+		console.log(this.state.myFile);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -48,11 +75,19 @@ export default class ProfileSecond extends Component {
 		
         Axios.post('http://localhost:3001/api/uploads',formData ,config)
             .then((res) => {
+				console.log(res);
+
 				this.setState({
 					filename: res.data.file.filename
 				})
-				console.log(res);
-            }).catch((err) => console.log(err));
+			}).catch((err) => console.log(err));
+	}
+
+
+	handleSubmit = e => {
+		e.preventDefault();
+		this.uploadImg();
+
     }
 		
 	render() {

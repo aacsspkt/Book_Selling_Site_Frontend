@@ -28,7 +28,7 @@ export default class Register extends Component {
 		var today = new Date();
 		var expiry = new Date(today.getTime() + 1 * 24 * 3600 * 1000); 
 	  
-		document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
+		document.cookie=name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString() + "; secure";
 
 	}
 

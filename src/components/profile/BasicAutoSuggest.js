@@ -97,7 +97,6 @@ class BasicAutoSuggest extends React.Component {
         // Adding AutoSuggest component
         return (
             <Autosuggest
-
                 suggestions={suggestions}
                 onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
