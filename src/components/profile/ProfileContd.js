@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import defaultImg from './profilepic.jpeg'
 import './ProfileContd.css'
 import Axios from 'axios'
+import { wait } from '@testing-library/react'
 export default class ProfileSecond extends Component {
 	constructor(props) {
 		super(props)
@@ -13,15 +14,11 @@ export default class ProfileSecond extends Component {
 			 filename: '',
 			 myFile: null,
 			 profileImg: defaultImg,
-			 address: {
-				 firstname: '',
-				 lastname: '',
-				 streetAddress: '',
-				 cityName: '',
-				 areaLocation: ''
-			 }
-
-
+		     streetAddress: '',
+			 cityName: '',
+			 areaLocation: '',
+			 firstName: '',
+			 lastName: '',
 		}
 	}
 
@@ -45,7 +42,6 @@ export default class ProfileSecond extends Component {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
-		this.getCookieValue();
 
 	}
 
@@ -66,7 +62,6 @@ export default class ProfileSecond extends Component {
 	uploadImg = () => {
 		const formData = new FormData();
 		formData.append('myFile', this.state.myFile);
-		console.log(this.state.myFile);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -75,20 +70,53 @@ export default class ProfileSecond extends Component {
 		
         Axios.post('http://localhost:3001/api/uploads',formData ,config)
             .then((res) => {
-				console.log(res);
-
 				this.setState({
 					filename: res.data.file.filename
 				})
+				console.log(res.data.file.filename);
 			}).catch((err) => console.log(err));
-	}
+			
 
+	}
 
 	handleSubmit = e => {
 		e.preventDefault();
 		this.uploadImg();
-
-    }
+		//To wait for upload res which contains profilePhoto file name.
+		setTimeout(() => {
+			const data = {
+				profilePhoto: this.state.filename,
+				firstName: this.state.firstName,
+				lastName: this.state.lastName,
+				contact: {
+					mobileNo: this.state.mobileNo,
+					phoneNo: this.state.phoneNo,
+					hidePhone: this.state.hideContact,
+				},
+				address: {
+					streetAddress: this.state.streetAddress,
+					cityName: this.state.cityName,
+					areaLocation: this.state.areaLocation,
+				}	
+			}
+			console.log(data);
+			Axios.post('http://localhost:3001/api/profiles', data)
+			.then(res => {
+				console.log(res.data);
+			}).catch(err => console.log(err));
+		}, 2000);
+		
+	}
+	
+	componentDidMount() {
+		this.setState({
+			firstName: this.getCookieValue("firstName"),
+			lastName: this.getCookieValue("lastName"),
+			streetAddress: this.getCookieValue("streetAddress"),
+			cityName: this.getCookieValue("cityName"),
+			areaLocation: this.getCookieValue("areaLocation"),
+		})
+	}
 		
 	render() {
 		return (

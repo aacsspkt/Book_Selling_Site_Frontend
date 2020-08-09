@@ -2,7 +2,6 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import './BasicAutoSuggest.css';
 import Axios from 'axios';
-import District from '../district/District';
 
 class BasicAutoSuggest extends React.Component {
     constructor(props) {
