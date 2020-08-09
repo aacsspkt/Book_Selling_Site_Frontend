@@ -6,6 +6,7 @@ import Navigation from './components/navigation/Navigation'
 import Profile from './components/profile/Profile'
 import ProfileContd from './components/profile/ProfileContd'
 import District from './components/district/District'
+import Book from './components/book/Book'
 
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
 					<Route path='/district' component={District} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/profilecontd' component={ProfileContd} />
+					<Route path='/book' component={Book} />
 					
 				</BrowserRouter>	
 			</div>

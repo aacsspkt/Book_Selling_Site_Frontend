@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import defaultImg from './profilepic.jpeg'
 import './ProfileContd.css'
 import Axios from 'axios'
-import { wait } from '@testing-library/react'
+import { Redirect  } from 'react-router-dom';
+
 export default class ProfileSecond extends Component {
 	constructor(props) {
 		super(props)
@@ -19,6 +20,8 @@ export default class ProfileSecond extends Component {
 			 areaLocation: '',
 			 firstName: '',
 			 lastName: '',
+			 isImageSelected: false,
+			 submitted: false
 		}
 	}
 
@@ -46,12 +49,14 @@ export default class ProfileSecond extends Component {
 	}
 
 	handleImageChange = e => {
+
 		this.setState({myFile:e.target.files[0]});
 		// console.log(e.target.files[0]);
 
 		//Change image src to new Image
 		this.setState({
-			profileImg: URL.createObjectURL(e.target.files[0])
+			profileImg: URL.createObjectURL(e.target.files[0]),
+			isImageSelected: true
 		})
 	};
 
@@ -60,6 +65,7 @@ export default class ProfileSecond extends Component {
 	}
 
 	uploadImg = () => {
+		if (!this.state.isImageSelected) return;
 		const formData = new FormData();
 		formData.append('myFile', this.state.myFile);
         const config = {
@@ -71,7 +77,8 @@ export default class ProfileSecond extends Component {
         Axios.post('http://localhost:3001/api/uploads',formData ,config)
             .then((res) => {
 				this.setState({
-					filename: res.data.file.filename
+					filename: res.data.file.filename,
+			
 				})
 				console.log(res.data.file.filename);
 			}).catch((err) => console.log(err));
@@ -105,7 +112,7 @@ export default class ProfileSecond extends Component {
 				console.log(res.data);
 			}).catch(err => console.log(err));
 		}, 2000);
-		
+		this.setState({submitted:true});
 	}
 	
 	componentDidMount() {
@@ -119,6 +126,7 @@ export default class ProfileSecond extends Component {
 	}
 		
 	render() {
+		if (this.state.submitted) return <Redirect to='/book' />;
 		return (
 			<div className='flex-center'>
                 <div className='container'>
