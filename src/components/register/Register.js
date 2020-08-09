@@ -17,19 +17,14 @@ export default class Register extends Component {
                     <h1 className='h1-center'>Register to B-Share</h1>
                     <h4 className='h4-center'>Enter your details below</h4>
                     <form onSubmit={this.storeValues}>
-                        <label htmlFor='firstName'>First name</label>
-                        <input type='text' id='firstName' name='firstName' onChange={this.handleChange}/>
+                        <label htmlFor='username'>Username</label>
+                        <input type='text' id='username' name='username' onChange={this.handleChange}/>
 
-                        <label htmlFor='lastName'>lastName</label>
-                        <input type='text' id='lastName' name='lastName' onChange={this.handleChange}/>
+                        <label htmlFor='email'>Email</label>
+                        <input type='text' id='email' name='email' onChange={this.handleChange}/>
 
-                        <label htmlFor='streetAddress'>Street Address</label>
-                        <input type='text' id='streetAddress' name='streetAddress'onChange={this.handleChange}/>
-
-                        <label htmlFor='cityName'>City Name</label>
-                        <input type='text' id='cityName' name='cityName' onChange={this.handleChange} />
-
-                        <label htmlFor='areaLocation'>District</label>
+                        <label htmlFor='password'>Password</label>
+                        <input type='password' id='password' name='password'onChange={this.handleChange}/>
 
                         <div className='flex-center'>
                             <button className='btnMain'>Next</button>

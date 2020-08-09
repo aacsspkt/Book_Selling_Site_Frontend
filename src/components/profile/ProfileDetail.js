@@ -3,6 +3,7 @@ import defaultImg from './profilepic.jpeg'
 import './ProfileDetail.css'
 import Axios from 'axios'
 import { Redirect  } from 'react-router-dom';
+import {setCookie ,getCookie} from '../../cookie'
 
 export default class ProfileSecond extends Component {
 	constructor(props) {
@@ -25,33 +26,18 @@ export default class ProfileSecond extends Component {
 		}
 	}
 
-	getCookieValue = (cname) =>  {
-		var name = cname + "=";
-		var decodedCookie = decodeURIComponent(document.cookie);
-		var ca = decodedCookie.split(';');
-		for(var i = 0; i <ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) === ' ') {
-			c = c.substring(1);
-			}
-			if (c.indexOf(name) === 0) {
-			return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
+	getCookieValue = cname => getCookie(cname);
+
+	setCookieValue = (name, value) => setCookie(name, value);
 
 	handlChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
 		})
-
 	}
 
 	handleImageChange = e => {
-
 		this.setState({myFile:e.target.files[0]});
-
 		//Change image src to new Image
 		this.setState({
 			profileImg: URL.createObjectURL(e.target.files[0]),
@@ -113,11 +99,11 @@ export default class ProfileSecond extends Component {
 	
 	componentDidMount() {
 		this.setState({
-			firstName: this.getCookieValue("firstName"),
-			lastName: this.getCookieValue("lastName"),
-			streetAddress: this.getCookieValue("streetAddress"),
-			cityName: this.getCookieValue("cityName"),
-			areaLocation: this.getCookieValue("areaLocation"),
+			firstName: this.getCookieValue('firstName'),
+			lastName: this.getCookieValue('lastName'),
+			streetAddress: this.getCookieValue('streetAddress'),
+			cityName: this.getCookieValue('cityName'),
+			areaLocation: this.getCookieValue('areaLocation'),
 		})
 	}
 		
@@ -130,11 +116,11 @@ export default class ProfileSecond extends Component {
                     <h4 className='h4-center'>Enter your details below</h4>
                     <form onSubmit={this.handleSubmit}>	
 						<div id='profile'>
-							<img id='profile-img' src={this.state.profileImg} alt="Profile" />
-							{/* <input type="file" id="myFile" name="filename" onChange={this.handleImageChange} /> */}
-							<div className="upload-btn-wrapper" onChange={this.handleImageChange}>
-  								<button className="btnFile" onChange={this.handleImageChange}>Upload a file</button>
- 								<input type="file" name="myfile" onChange={this.handleImageChange}/>
+							<img id='profile-img' src={this.state.profileImg} alt='Profile' />
+							{/* <input type='file' id='myFile' name='filename' onChange={this.handleImageChange} /> */}
+							<div className='upload-btn-wrapper' onChange={this.handleImageChange}>
+  								<button className='btnFile' onChange={this.handleImageChange}>Upload a file</button>
+ 								<input type='file' name='myfile' onChange={this.handleImageChange}/>
 							</div>
 						</div>
 						
@@ -144,9 +130,9 @@ export default class ProfileSecond extends Component {
 						<label htmlFor='phoneNo'>Phone No</label>
 						<input value={this.state.phoneNo} type='text' name='phoneNo' onChange={this.handlChange}/>
 
-						<label htmlFor='hideContact' className="checkbox-container">
-							<input id='hideContact' type="checkbox" value={this.state.hideContact} onChange={this.handleCheckChange}/>
-							<span className="checkmark" />
+						<label htmlFor='hideContact' className='checkbox-container'>
+							<input id='hideContact' type='checkbox' value={this.state.hideContact} onChange={this.handleCheckChange}/>
+							<span className='checkmark' />
 							Hide contacts
 						</label>
 

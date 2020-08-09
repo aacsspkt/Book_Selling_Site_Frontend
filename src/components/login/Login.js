@@ -29,8 +29,8 @@ export default class LoginPanel extends Component {
 			return <Redirect to='/' />;
 		}
         return (
-            <div className="flex-center">
-				<div className="container">
+            <div className='flex-center'>
+				<div className='container'>
 				
 					<LoginForm 
 						username={this.state.username}
@@ -71,8 +71,8 @@ function LoginForm(props) {
 					value={props.password}
 					onChange={props.handleChange}
 					/>
-				<div className="flex-center">
-					<button className="btnMain">Login</button>
+				<div className='flex-center'>
+					<button className='btnMain'>Login</button>
 				</div>
             </form>
 		

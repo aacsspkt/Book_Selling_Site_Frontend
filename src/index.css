@@ -24,6 +24,10 @@ html {
 h1, h4 {
 	font-family: 'Roboto', sans-serif;
 }
+
+h4{
+	font-size: 1.6rem;
+}
  
 a {
     text-decoration: none;
@@ -38,17 +42,18 @@ li {
 }
 
 label {
-	font-size: 1.3rem
+	font-size: 1.4rem
 }
 
 input[type=text], input[type=password]{
 	width: 100%;
 	padding: 12px 20px;
-	margin: 8px 0;
+	margin: 1rem 0;
 	box-sizing: border-box;
 	border: 2px solid var(--color-grey);
 	-webkit-transition: 0.5s;
 	transition: 0.5s;
+	font-size: 1.5rem;
 	outline: none;
   }
 input[type=text]:hover, input[type=password]:hover {
@@ -71,7 +76,7 @@ button:hover {
 }
 
 .h4-center {
-	font-size: 15px;
+	font-size: 1.5rem;
 	font-weight: bold;
 	padding-bottom: 20px;
 }
