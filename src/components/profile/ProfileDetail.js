@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import defaultImg from './profilepic.jpeg'
-import './ProfileContd.css'
+import './ProfileDetail.css'
 import Axios from 'axios'
 import { Redirect  } from 'react-router-dom';
 
@@ -51,7 +51,6 @@ export default class ProfileSecond extends Component {
 	handleImageChange = e => {
 
 		this.setState({myFile:e.target.files[0]});
-		// console.log(e.target.files[0]);
 
 		//Change image src to new Image
 		this.setState({
@@ -78,12 +77,9 @@ export default class ProfileSecond extends Component {
             .then((res) => {
 				this.setState({
 					filename: res.data.file.filename,
-			
 				})
 				console.log(res.data.file.filename);
 			}).catch((err) => console.log(err));
-			
-
 	}
 
 	handleSubmit = e => {
@@ -126,17 +122,20 @@ export default class ProfileSecond extends Component {
 	}
 		
 	render() {
-		if (this.state.submitted) return <Redirect to='/book' />;
+		if (this.state.submitted) return <Redirect to='/register' />;
 		return (
 			<div className='flex-center'>
                 <div className='container'>
                     <h1 className='h1-center'>Register to B-Share</h1>
                     <h4 className='h4-center'>Enter your details below</h4>
-
                     <form onSubmit={this.handleSubmit}>	
-						<div>
+						<div id='profile'>
 							<img id='profile-img' src={this.state.profileImg} alt="Profile" />
-							<input type="file" id="myFile" name="filename" onChange={this.handleImageChange} />
+							{/* <input type="file" id="myFile" name="filename" onChange={this.handleImageChange} /> */}
+							<div className="upload-btn-wrapper" onChange={this.handleImageChange}>
+  								<button className="btnFile" onChange={this.handleImageChange}>Upload a file</button>
+ 								<input type="file" name="myfile" onChange={this.handleImageChange}/>
+							</div>
 						</div>
 						
 						<label htmlFor='mobileNo'>Mobile Number</label>
@@ -145,9 +144,10 @@ export default class ProfileSecond extends Component {
 						<label htmlFor='phoneNo'>Phone No</label>
 						<input value={this.state.phoneNo} type='text' name='phoneNo' onChange={this.handlChange}/>
 
-						<label htmlFor='hideContact' className="checkbox-container">Hide contacts
+						<label htmlFor='hideContact' className="checkbox-container">
 							<input id='hideContact' type="checkbox" value={this.state.hideContact} onChange={this.handleCheckChange}/>
 							<span className="checkmark" />
+							Hide contacts
 						</label>
 
 						<div className='flex-center'>

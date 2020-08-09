@@ -4,9 +4,10 @@ import Home from './components/Home';
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
 import Profile from './components/profile/Profile'
-import ProfileContd from './components/profile/ProfileContd'
+import ProfileDetail from './components/profile/ProfileDetail'
 import District from './components/district/District'
 import Book from './components/book/Book'
+import Register from './components/register/Register'
 
 
 export default function App() {
@@ -19,8 +20,9 @@ export default function App() {
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />
 					<Route path='/profile' component={Profile} />
-					<Route path='/profilecontd' component={ProfileContd} />
+					<Route path='/profiledetail' component={ProfileDetail} />
 					<Route path='/book' component={Book} />
+					<Route path='/register' component={Register} />
 					
 				</BrowserRouter>	
 			</div>

@@ -49,8 +49,8 @@ export default class Register extends Component {
         return (
             <div className='flex-center'>
                 <div className='container'>
-                    <h1 className='h1-center'>Register to B-Share</h1>
-                    <h4 className='h4-center'>Enter your details below</h4>
+                    <h1 className='h1-center'>Profile</h1>
+                    <h4 className='h4-center'>Let's create profile first ...</h4>
                     <form onSubmit={this.storeValues}>
                         <label htmlFor='firstName'>First name</label>
                         <input type='text' id='firstName' name='firstName' onChange={this.handleChange}/>
