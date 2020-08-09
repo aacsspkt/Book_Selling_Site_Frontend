@@ -10,6 +10,7 @@ export default class ProfileSecond extends Component {
 		super(props)
 	
 		this.state = {
+			_id: '',
 			 mobileNo: '',
 			 phoneNo: '',
 			 hideContact: false,
@@ -91,10 +92,10 @@ export default class ProfileSecond extends Component {
 			console.log(data);
 			Axios.post('http://localhost:3001/api/profiles', data)
 			.then(res => {
-				console.log(res.data);
+				this.setState({submitted:true, _id: res.data._id});
+				console.log(res.data);	
 			}).catch(err => console.log(err));
 		}, 2000);
-		this.setState({submitted:true});
 	}
 	
 	componentDidMount() {
@@ -108,7 +109,10 @@ export default class ProfileSecond extends Component {
 	}
 		
 	render() {
-		if (this.state.submitted) return <Redirect to='/register' />;
+		if (this.state.submitted) {
+			setCookie("profileId", this.state._id);
+			return <Redirect to='/register'/>;
+		} 
 		return (
 			<div className='flex-center'>
                 <div className='container'>

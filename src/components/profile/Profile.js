@@ -26,16 +26,14 @@ export default class Register extends Component {
 		this.setState({areaLocation: districtId});
 	}
 
-	setCookieValue = (name, value) => setCookie(name, value);
-
 	storeValues = e => {
-	  e.preventDefault();
-	  this.setCookieValue('firstName', this.state.firstName);
-	  this.setCookieValue('lastName', this.state.lastName);
-	  this.setCookieValue('streetAddress', this.state.streetAddress);
-	  this.setCookieValue('cityName', this.state.cityName);
-	  this.setCookieValue('areaLocation', this.state.areaLocation);
-	  this.setState({submit: true})
+		e.preventDefault();
+		setCookie('firstName', this.state.firstName);
+		setCookie('lastName', this.state.lastName);
+		setCookie('streetAddress', this.state.streetAddress);
+		setCookie('cityName', this.state.cityName);
+		setCookie('areaLocation', this.state.areaLocation);
+		this.setState({submit: true});
 	}
 
     render() {
