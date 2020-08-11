@@ -23,7 +23,6 @@ export default function App() {
 					<Route path='/profiledetail' component={ProfileDetail} />
 					<Route path='/book' component={Book} />
 					<Route path='/register' component={Register} />
-					
 				</BrowserRouter>	
 			</div>
 		</div>

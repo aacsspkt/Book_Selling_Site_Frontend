@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 import {getCookie} from '../../cookie'
 import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ export default class Register extends Component {
 			 username: '',
 			 password: '',
 			 email: '',
+			 submitted: false
 
 
 		}
@@ -37,6 +39,9 @@ export default class Register extends Component {
 	}
 	
 	render() {
+		if (this.state.submitted) {
+			return <Redirect to='/book'/>;
+		}
 		return (
 			<div className='flex-center'>
                 <div className='container'>
