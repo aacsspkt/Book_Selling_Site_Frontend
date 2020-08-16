@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import './District.css'
+import '../district/District.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import ModalBox from '../modalbox/ModalBox';
 
 
-export default class District extends Component {
+export default class Category extends Component {
 	constructor(props) {
 		super(props)
 	
 		this.state = {
 			name:'',
-			districts: [], //created for get req.
+			categories: [], //created for get req.
 			config:{
 				headers: {'Authorization': localStorage.getItem('token')}
 			},
-			districtId: '', //created for update
+			categoryId: '', //created for update
 			isEdit: false
 		}
 	}
@@ -28,64 +28,64 @@ export default class District extends Component {
 	handlePost = e => {
 		if (!this.state.isEdit) {
 			e.preventDefault();
-			Axios.post('http://localhost:3001/api/districts', {name: this.state.name}, this.state.config)
+			Axios.post('http://localhost:3001/api/categories', {name: this.state.name}, this.state.config)
 			.then(res => {
 				this.setState({
-					districts: [...this.state.districts, res.data],
+					categories: [...this.state.categories, res.data],
 					name: ''
 				})
 			}).catch(err => console.log(err.response));
 		} else {
 			e.preventDefault();
-			Axios.put(`http://localhost:3001/api/districts/${this.state.districtId}`, {name: this.state.name}, this.state.config)
+			Axios.put(`http://localhost:3001/api/categories/${this.state.categoryId}`, {name: this.state.name}, this.state.config)
 			.then(res => {
-				const updatedDistrict = this.state.districts.map(district => {
-					if (this.state.districtId === district._id) {
-						district.name = this.state.name
+				const updatedCategory = this.state.categories.map(category => {
+					if (this.state.categoryId === category._id) {
+						category.name = this.state.name
 					}
-					return district;
+					return category;
 				})
 				this.setState({
-					districts: updatedDistrict,
+					categories: updatedCategory,
 					name: '',
 					isEdit: 'false',
-					districtId: ''
+					categoryId: ''
 				})
 			}).catch(err => console.log(err.response));
 		}
 	}
 
-	editDistrict = districtId => {
-		console.log(districtId);
+	editCategory = categoryId => {
+		console.log(categoryId);
 		this.setState({
-			name: this.state.districts.find(district => {
-				return district._id === districtId;
+			name: this.state.categories.find(category => {
+				return category._id === categoryId;
 			}).name,
-			districtId: districtId,
+			categoryId: categoryId,
 			isEdit: true
 		});
 	}
 
-	handleDelete = districtId => {
-		Axios.delete(`http://localhost:3001/api/districts/${districtId}`, this.state.config)
+	handleDelete = categoryId => {
+		Axios.delete(`http://localhost:3001/api/categories/${categoryId}`, this.state.config)
 		.then(res => {
 			console.log(res.data);
-			const filteredDistrict = this.state.districts.filter(district => {
-				return district._id !== districtId;
+			const filteredCategory = this.state.categories.filter(category => {
+				return category._id !== categoryId;
 			});
-			console.log(filteredDistrict);
+			console.log(filteredCategory);
 			this.setState({
-				districts: filteredDistrict
+				categories: filteredCategory
 			});
 		}).catch(err => console.log(err));
 	}
 
 	handleDeleteAll = () => {
-		Axios.delete('http://localhost:3001/api/districts/', this.state.config)
+		Axios.delete('http://localhost:3001/api/categories/', this.state.config)
 		.then(res => {
 			console.log(res.data);
 			this.setState({
-				districts: []
+				categories: []
 			});
 			this.hideModal()
 		}).catch(err => console.log(err));
@@ -96,7 +96,7 @@ export default class District extends Component {
 		this.setState({
 			name: '',
 			isEdit: false,
-			districtId: ''
+			categoryId: ''
 		});
 	};
 		
@@ -109,10 +109,10 @@ export default class District extends Component {
 	};
 
 	componentDidMount() {
-		Axios.get('http://localhost:3001/api/districts', this.state.config)
+		Axios.get('http://localhost:3001/api/categories', this.state.config)
 		.then(res => {
 			console.log(res.data);
-			this.setState({districts: res.data})
+			this.setState({categories: res.data})
 		}).catch(err => console.log(err.response));
 	}
 	
@@ -125,22 +125,22 @@ export default class District extends Component {
 						 hideModal={this.hideModal}
 						 handleDeleteAll={this.handleDeleteAll}/>
 					<div id='top'>
-						<h1 id='district-h1'>Manage District</h1>
+						<h1 id='district-h1'>Manage Categories</h1>
 						<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
 							Delete All</button>
 					</div>
 				
-					<DistrictForm
+					<CategoryForm
 					handlePost={this.handlePost}
 					handleChange={this.handleChange}
 					name={this.state.name}
 					clearText={this.clearForm}
 					isEdit={this.state.isEdit}
 					/>
-					<DistrictList 
-					districts={this.state.districts}
+					<CategoryList 
+					categories={this.state.categories}
 					handleDelete={this.handleDelete}
-					editDistrict={this.editDistrict}
+					editCategory={this.editCategory}
 					/>
 				</div>
 			</div>
@@ -148,10 +148,10 @@ export default class District extends Component {
 	}
 }
 
- function DistrictForm(props) {
+ function CategoryForm(props) {
 	return (
 		<form id='districtForm'>
-				<label htmlFor='name'>District Name</label>
+				<label htmlFor='name'>Category Name</label>
 				<input type='text' id='name' name='name'
 				value={props.name}
 				onChange={props.handleChange}/>
@@ -173,17 +173,17 @@ export default class District extends Component {
 	)
 }
 
-function DistrictList(props) {
+function CategoryList(props) {
 	return(
 		<div>
 			<ul className='ul-list'>
 				{
-					props.districts.map(district => {
-						return <div className='row'  key={district._id}>
-									<li className='list'>{district.name}</li>
+					props.categories.map(category => {
+						return <div className='row'  key={category._id}>
+									<li className='list'>{category.name}</li>
 									<div className='icons'>
-									<FontAwesomeIcon className='edit' onClick={() => props.editDistrict(district._id)} icon={faEdit} />
-									<FontAwesomeIcon onClick={() => props.handleDelete(district._id)} className='del' icon={faTimes} />
+									<FontAwesomeIcon className='edit' onClick={() => props.editCategory(category._id)} icon={faEdit} />
+									<FontAwesomeIcon onClick={() => props.handleDelete(category._id)} className='del' icon={faTimes} />
 									</div>
 							   </div>
 					})

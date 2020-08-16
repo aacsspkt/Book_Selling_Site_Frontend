@@ -4,6 +4,7 @@ import logo from './logo.png'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 export default class Navigation extends Component {
 	constructor(props) {
@@ -14,9 +15,11 @@ export default class Navigation extends Component {
 			toggle: 'false'
 		}	
 	}
+	handleLogout = () => {
+		localStorage.removeItem('token');
+    }
 
 	toggleMenu = () => {
-
 		let nav = document.getElementById("nav");
 		if (nav.className === "nav") {
 			nav.className += " responsive";
@@ -33,23 +36,25 @@ export default class Navigation extends Component {
 
 		main.style.marginTop="70px";
 		this.setState({toggle: !this.state.toggle});
-		
-	
 	}
     render() {
         return (
-            <div>
-                <div className='nav' id='nav'>
-					<a className='logo'><img id='logo' src={logo} alt='B-Share' /></a>
-                    <a className='active'>Home</a>
-                    <a>News</a>
-                    <a>Contact</a>
-                    <a>About</a>
-                    <a className='icon' onClick={this.toggleMenu}>
-                     <FontAwesomeIcon icon={faBars} />
-                    </a>
-                </div>
-            </div>
+			<div>
+				<div className='nav' id='nav'>
+					{/* <a className='logo'><img id='logo' src={logo} alt='B-Share' /></a> */}
+					<NavLink to='/' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+					<NavLink to='/'>Home</NavLink>
+					<NavLink to='/profile'>Sign Up</NavLink> 
+					<NavLink to='/login'>Login</NavLink> 
+					
+					
+					<div id='hamburger-menu' className='icon' href="#" onClick={this.toggleMenu}>
+						<FontAwesomeIcon icon={faBars} />
+					</div>
+					<p onClick={this.handleLogout}>Logout</p>
+				</div>
+				
+			</div>
         )
     }
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import './BookItemGrid.css'
-import Book from './Book'
-
 
 export default class BookGrid extends Component {
 	constructor(props) {
@@ -10,7 +8,6 @@ export default class BookGrid extends Component {
 	
 		this.state = {
 			books: [],
-
 			 
 		}
 	}
