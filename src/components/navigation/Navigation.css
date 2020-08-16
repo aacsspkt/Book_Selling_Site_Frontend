@@ -5,11 +5,18 @@
 	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the bottom of the page */
 	width: 100%; /* Full width */
-  
-	
   }
   
   .nav a {
+	float: left;
+	display: block;
+	color: grey;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+  }
+  #hamburger-menu {
 	float: left;
 	display: block;
 	color: grey;
@@ -24,12 +31,16 @@
 	color: white;
   }
   
-  .nav a.active {
+  .nav a.active:not(:first) {
 	background-color: #577399;
 	color: white;
   }
   
-  .nav .icon {
+  /* .nav .icon {
+	display: none;
+  } */
+
+  .nav .icon#hamburger-menu {
 	display: none;
   }
 
@@ -51,15 +62,25 @@
 	.nav a:first-child {
 		text-align: center;
 	}
-	.nav a.icon {
-	  float: right;
+
+	.nav .icon#hamburger-menu {
+		float: right;
 	  display: block;
 	}
+	/* .nav a.icon {
+	  float: right;
+	  display: block;
+	} */
 	.nav.responsive {position: relative;}
-	.nav.responsive .icon {
+	/* .nav.responsive .icon {
 	  position: absolute;
 	  right: 0;
 	  top: 0;
+	} */
+	.nav.responsive #hamburger-menu {
+		position: absolute;
+		right: 0;
+		top: 0;	
 	}
 	.nav.responsive a {
 	  float: none;

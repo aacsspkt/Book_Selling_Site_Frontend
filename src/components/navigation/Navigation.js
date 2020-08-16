@@ -4,9 +4,7 @@ import logo from './logo.png'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Router, Switch, Link, NavLink, Route } from 'react-router-dom';
-
-import Login from '../login/Login'
+import { NavLink } from 'react-router-dom';
 
 export default class Navigation extends Component {
 	constructor(props) {
@@ -17,6 +15,9 @@ export default class Navigation extends Component {
 			toggle: 'false'
 		}	
 	}
+	handleLogout = () => {
+        localStorage.removeItem('token');
+    }
 
 	toggleMenu = () => {
 		let nav = document.getElementById("nav");
@@ -35,29 +36,24 @@ export default class Navigation extends Component {
 
 		main.style.marginTop="70px";
 		this.setState({toggle: !this.state.toggle});
-		
-	
 	}
     render() {
         return (
 			<div>
 				<div className='nav' id='nav'>
 					{/* <a className='logo'><img id='logo' src={logo} alt='B-Share' /></a> */}
-
 					<NavLink to='/' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+					<NavLink to='/'>Home</NavLink>
+					<NavLink to='/profile'>Sign Up</NavLink> 
+					<NavLink to='/login'>Login</NavLink> 
 					
-					<NavLink to='/profile'>Profile</NavLink> 
 					
-					{/* <a>News</a>
-					<a>Contact</a>
-					<a>About</a>
-					<a className='icon' onClick={this.toggleMenu}>
+					<div id='hamburger-menu' className='icon' href="#" onClick={this.toggleMenu}>
 						<FontAwesomeIcon icon={faBars} />
-					</a> */}
+					</div>
+					<p onClick={this.handleLogout}>Logout</p>
 				</div>
-				<Switch>
-					<Route path='/login'></Route>
-				</Switch>
+				
 			</div>
         )
     }

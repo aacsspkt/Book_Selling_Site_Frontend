@@ -9,6 +9,9 @@ import Book from './components/book/Book'
 import Register from './components/register/Register'
 import PrivateRoute from './components/PrivateRoute'
 import NoMatch from './components/NoMatch'
+import AdminDash from'./components/admin/AdminDash'
+import AdminRoute from './components/AdminRoute'
+
 
 
 export default function App() {
@@ -24,6 +27,7 @@ export default function App() {
 					<Route path='/district' component={District} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/profiledetail' component={ProfileDetail} />
+					<AdminRoute path='/admin' component={AdminDash} />
 					<Route>
 						<NoMatch />
 					</Route>
