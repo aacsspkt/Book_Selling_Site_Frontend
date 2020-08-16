@@ -49,7 +49,7 @@ export default class LoginPanel extends Component {
 function SignUp() {
     return (
         <div>
-            <p id='link-signUp'>Don't have an account? <Link to='/register'>Sign Up</Link></p>
+            <p id='link-signUp'>Don't have an account? <Link to='/profile'>Sign Up</Link></p>
             
         </div>
     )

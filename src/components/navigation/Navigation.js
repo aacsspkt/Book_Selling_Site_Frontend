@@ -4,6 +4,9 @@ import logo from './logo.png'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { Router, Switch, Link, NavLink, Route } from 'react-router-dom';
+
+import Login from '../login/Login'
 
 export default class Navigation extends Component {
 	constructor(props) {
@@ -16,7 +19,6 @@ export default class Navigation extends Component {
 	}
 
 	toggleMenu = () => {
-
 		let nav = document.getElementById("nav");
 		if (nav.className === "nav") {
 			nav.className += " responsive";
@@ -38,18 +40,25 @@ export default class Navigation extends Component {
 	}
     render() {
         return (
-            <div>
-                <div className='nav' id='nav'>
-					<a className='logo'><img id='logo' src={logo} alt='B-Share' /></a>
-                    <a className='active'>Home</a>
-                    <a>News</a>
-                    <a>Contact</a>
-                    <a>About</a>
-                    <a className='icon' onClick={this.toggleMenu}>
-                     <FontAwesomeIcon icon={faBars} />
-                    </a>
-                </div>
-            </div>
+			<div>
+				<div className='nav' id='nav'>
+					{/* <a className='logo'><img id='logo' src={logo} alt='B-Share' /></a> */}
+
+					<NavLink to='/' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+					
+					<NavLink to='/profile'>Profile</NavLink> 
+					
+					{/* <a>News</a>
+					<a>Contact</a>
+					<a>About</a>
+					<a className='icon' onClick={this.toggleMenu}>
+						<FontAwesomeIcon icon={faBars} />
+					</a> */}
+				</div>
+				<Switch>
+					<Route path='/login'></Route>
+				</Switch>
+			</div>
         )
     }
 }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 import {getCookie} from '../../cookie'
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom';
@@ -40,7 +39,7 @@ export default class Register extends Component {
 	
 	render() {
 		if (this.state.submitted) {
-			return <Redirect to='/book'/>;
+			return <Redirect to='/'/>;
 		}
 		return (
 			<div className='flex-center'>

@@ -1,6 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
-import Home from './components/Home';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
 import Profile from './components/profile/Profile'
@@ -8,23 +7,29 @@ import ProfileDetail from './components/profile/ProfileDetail'
 import District from './components/district/District'
 import Book from './components/book/Book'
 import Register from './components/register/Register'
+import PrivateRoute from './components/PrivateRoute'
+import NoMatch from './components/NoMatch'
 
 
 export default function App() {
 	return (
 		<div>
+			<BrowserRouter>
 			<Navigation />
 			<div className="main-content">		
-				<BrowserRouter>
-					<Route path='/' exact component={Home} />
+				<Switch>
+					<Route path='/' exact component={Book} />
+					<Route path='/register' component={Register} />
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />
 					<Route path='/profile' component={Profile} />
 					<Route path='/profiledetail' component={ProfileDetail} />
-					<Route path='/book' component={Book} />
-					<Route path='/register' component={Register} />
-				</BrowserRouter>	
+					<Route>
+						<NoMatch />
+					</Route>
+				</Switch>
 			</div>
+			</BrowserRouter>	
 		</div>
 	)
 	
