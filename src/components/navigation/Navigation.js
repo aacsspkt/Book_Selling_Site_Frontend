@@ -16,7 +16,7 @@ export default class Navigation extends Component {
 		}	
 	}
 	handleLogout = () => {
-        localStorage.removeItem('token');
+		localStorage.removeItem('token');
     }
 
 	toggleMenu = () => {

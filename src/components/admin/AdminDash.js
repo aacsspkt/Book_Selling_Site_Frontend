@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import District from '../district/District'
+import Category from '../category/Category'
 import { Switch, Link, Route } from 'react-router-dom';
 
 
@@ -13,6 +14,7 @@ export default class AdminDash extends Component {
 				</ul>
 				<Switch>
 					<Route path='/admin/district' component={District}></Route>
+					<Route path='/admin/category' component={Category}></Route>
 				</Switch>
 				
 			</div>
