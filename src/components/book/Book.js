@@ -2,29 +2,23 @@ import React, { Component } from 'react'
 import Jumbotron from './Jumbotron'
 import './Book.css'
 import './BookItemGrid'
-import BookGrid from './BookItemGrid'
+import Axios from 'axios'
 
-export default class Book extends Component {
-	constructor(props) {
-		super(props)
-	
-		this.state = {
-			 
-		}
-	}
-	
-	render() {
-		return (
-			<div className='flex-center'>
-				<div className='container'>
-					<Jumbotron />
-					<div className='line'></div>
-					<div className='line'></div>
-					<BookGrid />
+import BookItemGrid from './BookItemGrid'
 
-
-				</div>
+export default function Book(props) {
+	return (
+		<div className='flex-center'>
+			<div className='container'>
+				<Jumbotron />
+				<div className='line'></div>
+				<div className='line'></div>
+				<BookItemGrid history={props.history} />
 			</div>
-		)
-	}
+		</div>
+	)
 }
+
+
+
+

@@ -10,7 +10,7 @@ import Register from './components/register/Register'
 import NoMatch from './components/NoMatch'
 import AdminDash from'./components/admin/AdminDash'
 import AdminRoute from './components/AdminRoute'
-
+import BookDetail from './components/book/BookDetail'
 
 
 export default function App() {
@@ -20,7 +20,8 @@ export default function App() {
 			<Navigation />
 			<div className="main-content">		
 				<Switch>
-					<Route path='/' exact component={Book} />
+					<Route path='/book' exact component={Book} />
+					<Route path='/book/:bookId' exact component={BookDetail} />
 					<Route path='/register' component={Register} />
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />

@@ -17,6 +17,7 @@ export default class Navigation extends Component {
 	}
 	handleLogout = () => {
 		localStorage.removeItem('token');
+		console.log(this.props);
     }
 
 	toggleMenu = () => {
@@ -41,12 +42,10 @@ export default class Navigation extends Component {
         return (
 			<div>
 				<div className='nav' id='nav'>
-					{/* <a className='logo'><img id='logo' src={logo} alt='B-Share' /></a> */}
-					<NavLink to='/' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
-					<NavLink to='/'>Home</NavLink>
+					<NavLink to='/book' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+					<NavLink to='/book'>Book</NavLink>
 					<NavLink to='/profile'>Sign Up</NavLink> 
 					<NavLink to='/login'>Login</NavLink> 
-					
 					
 					<div id='hamburger-menu' className='icon' href="#" onClick={this.toggleMenu}>
 						<FontAwesomeIcon icon={faBars} />
