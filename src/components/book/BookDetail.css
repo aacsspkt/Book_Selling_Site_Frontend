@@ -95,8 +95,28 @@
 	color: #346250;
 }
 
-
-
 #seller-detail-panel h3 {
 	text-align: center;
+}
+
+@media screen and (max-width: 890px) {
+	#mini-nav {
+		margin-left: 1rem;
+		margin-bottom: 2rem;
+	}
+}
+
+@media screen and (max-width: 660px) {
+	#right-book-panel {
+		width: 200px;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	#top-book-panel {
+		flex-direction: column;
+	}
+	#right-book-panel {
+		margin-top: 3rem;
+	}
 }
