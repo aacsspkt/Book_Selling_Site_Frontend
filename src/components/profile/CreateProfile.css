@@ -11,6 +11,10 @@
 	overflow: hidden;
 	display: inline-block;
   }
+
+  .h1-center {
+	padding-top: 0;
+}
   
   .btnFile {
 	cursor: pointer;

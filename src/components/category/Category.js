@@ -131,17 +131,17 @@ export default class Category extends Component {
 					</div>
 				
 					<CategoryForm
-					handlePost={this.handlePost}
-					handleChange={this.handleChange}
-					name={this.state.name}
-					clearText={this.clearForm}
-					isEdit={this.state.isEdit}
+						handlePost={this.handlePost}
+						handleChange={this.handleChange}
+						name={this.state.name}
+						clearText={this.clearForm}
+						isEdit={this.state.isEdit}
 					/>
 					<CategoryList 
-					categories={this.state.categories}
-					handleDelete={this.handleDelete}
-					editCategory={this.editCategory}
-					/>
+						categories={this.state.categories}
+						handleDelete={this.handleDelete}
+						editCategory={this.editCategory}
+						/>
 				</div>
 			</div>
 		)

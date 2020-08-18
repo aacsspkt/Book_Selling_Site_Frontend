@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
-import {getCookie} from '../../cookie'
 import Axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect,  useParams } from 'react-router-dom';
 
-export default class Register extends Component {
+
+export default function Register() {
+	let { profileId } = useParams();
+	return (
+		<div>
+			<RegisterMain profile={profileId}/>
+		</div>
+	)
+}
+
+ class RegisterMain extends Component {
 	constructor(props) {
 		super(props)
 	
@@ -12,9 +21,8 @@ export default class Register extends Component {
 			 username: '',
 			 password: '',
 			 email: '',
-			 submitted: false
-
-
+			 submitted: false,
+			 profile: props.profile,
 		}
 	}
 
@@ -22,14 +30,9 @@ export default class Register extends Component {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	getCookieProfile = () => {
-		this.setState({profile: getCookie("profileId")}); 
-	}
-
 	handleSubmit = e => {
 		e.preventDefault();
-		this.getCookieProfile();
-		console.log(this.state.profile);
+		console.log("Profile: " + this.state.profile);
 		Axios.post('http://localhost:3001/api/users/register', this.state)
 			.then(res => {
 				this.setState({submitted:true});
@@ -39,7 +42,7 @@ export default class Register extends Component {
 	
 	render() {
 		if (this.state.submitted) {
-			return <Redirect to='/'/>;
+			return <Redirect to='/login'/>;
 		}
 		return (
 			<div className='flex-center'>

@@ -13,7 +13,8 @@ export default class LoginPanel extends Component {
 			isBasic: false,
             isAdmin: false,
         }
-    }
+	}
+	
 	handleChange = e => this.setState({[e.target.name]: e.target.value});
 	
 	handleLogin = e => {
@@ -32,7 +33,7 @@ export default class LoginPanel extends Component {
 		if (this.state.isAdmin) {
             return <Redirect to='/admin' />
         } else if (this.state.isBasic) {
-            return <Redirect to='/dash' />
+            return <Redirect to='/book' />
         }
         return (
             <div className='flex-center'>
@@ -44,7 +45,6 @@ export default class LoginPanel extends Component {
 						handleLogin={this.handleLogin}
 					/>
 					<SignUp/>
-				
 				</div>
             </div>
         )
