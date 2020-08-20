@@ -22,7 +22,6 @@ export default function BookDetail() {
 			title: '',
 			author: '',
 			publication: '',
-			image: '',
 			condition: '',
 			deliveryArea: '',
 			cost: null,
@@ -53,7 +52,6 @@ export default function BookDetail() {
 				deliveryArea: res.data.deliveryArea,
 				cost: res.data.cost,
 				category: res.data.category.name,
-				image: res.data.image,
 				firstName: res.data.owner.firstName,
 				lastName: res.data.owner.lastName,
 				numberOfActiveAds: res.data.owner.numberOfActiveAds,
@@ -111,7 +109,6 @@ export default function BookDetail() {
 						</div>
 					</div>
 				</div>
-				<div id='space'></div>
 			</div>	
 		)
 	}

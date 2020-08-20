@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/login/Login'
 import Navigation from './components/navigation/Navigation'
-import CreateProfile from './components/profile/CreateProfile'
+import Profile from './components/profile/Profile'
 import District from './components/district/District'
 import Book from './components/book/Book'
 import Register from './components/register/Register'
@@ -24,7 +24,7 @@ export default function App() {
 					<Route path='/register/' component={Register} />
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />
-					<Route path='/createprofile' component={CreateProfile} />
+					<Route path='/profile' component={Profile} />
 					<AdminRoute path='/admin' component={AdminDash} />
 					<Route>
 						<NoMatch />

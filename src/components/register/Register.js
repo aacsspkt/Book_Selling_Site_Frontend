@@ -17,7 +17,6 @@ export default function Register() {
 		super(props)
 	
 		this.state = {
-			 profile: '',
 			 username: '',
 			 password: '',
 			 email: '',

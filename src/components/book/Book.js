@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Jumbotron from './Jumbotron'
 import './Book.css'
 import './BookItemGrid'
-import Axios from 'axios'
 
 import BookItemGrid from './BookItemGrid'
 
