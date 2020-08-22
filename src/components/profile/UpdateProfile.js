@@ -4,11 +4,11 @@ import Navigation from '../navigation/Navigation'
 import Axios from 'axios'
 import { useParams } from 'react-router-dom'
 
-export default function UpdateProfile () {
+export default function UpdateProfile (props) {
 	let { profileId } = useParams();
 
 	return (
-		<Main id={profileId} />
+		<Main id={profileId} history={props.history} />
 	)
 }
 
@@ -55,7 +55,7 @@ export default function UpdateProfile () {
 			);
     };
 
-    handleCheckChange = e => {
+    handleCheckChange = () => {
         this.setState({
             hideContact: !this.state.hideContact
         })
@@ -79,10 +79,31 @@ export default function UpdateProfile () {
 	
 	handleSubmit = (e) => {
 		e.preventDefault();
-		Axios.put(`http://localhost:3001/api/profiles/${this.state.profileId}`, this.state)
-		.then(res => {
-			console.log(res.data);
-		})
+		this.uploadImg();
+		setTimeout(() => {
+			const data = {
+				profilePhoto: this.state.filename,
+				firstName: this.state.firstName,
+				lastName: this.state.lastName,
+				contact: {
+					mobileNo: this.state.mobileNo,
+					phoneNo: this.state.phoneNo,
+					hidePhone: this.state.hideContact
+				},
+				address: {
+					streetAddress: this.state.streetAddress,
+					cityName: this.state.cityName,
+					areaLocation: this.state.areaLocation
+				},
+				profile: this.state.profile
+			}
+			Axios.put(`http://localhost:3001/api/profiles/${this.state.profileId}`, data)
+			.then(res => {
+				console.log(res.data);
+				this.props.history.push('/profile');
+			})
+		}, 2000);
+		
 	}
 	componentDidMount = () => {
 		Axios.get(`http://localhost:3001/api/profiles/${this.state.profileId}`)
@@ -100,7 +121,6 @@ export default function UpdateProfile () {
 				profileImg: "http://localhost:3001/uploads/" + res.data.profilePhoto
 			})
 		});
-		
 	}
 	
 	render() {
