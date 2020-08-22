@@ -9,6 +9,9 @@
 	--color-lightGreen:#D1F0B1;
 	--color-pinkRed: #fe5f55;
 }
+:-moz-any-link:focus {
+	outline: none;
+  }
 * {
     margin: 0;
     padding: 0;
@@ -33,9 +36,7 @@ a {
     text-decoration: none;
 }
 
-:-moz-any-link:focus {
-	outline: none;
-  }
+
 
 li {
 	list-style-type: none;

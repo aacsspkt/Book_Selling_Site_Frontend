@@ -49,7 +49,7 @@ export default class Profile extends Component {
         return (
 			<>
 				<Navigation />
-				<DisplayProfile token={this.state.token} />
+				<DisplayProfile token={this.state.token} history={this.props.history} />
 			</>
         )
     }

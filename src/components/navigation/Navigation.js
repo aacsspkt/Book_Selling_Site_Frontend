@@ -45,7 +45,7 @@ export default class Navigation extends Component {
 
 
 
-	componentWillMount = () => {
+	componentDidMount = () => {
 		try {
 			this.setState( {token: jwtDecode(localStorage.getItem('token')), LoggedIn: true} ); 
 		} catch (error) {

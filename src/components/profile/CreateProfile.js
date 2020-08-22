@@ -54,7 +54,6 @@ export default class CreateProfileForm extends Component {
 
     uploadImg = () => {
         if (!this.state.isImageSelected)  return;
-        
         const formData = new FormData();
         formData.append('myFile', this.state.myFile);
         const config = {
@@ -120,10 +119,15 @@ export default class CreateProfileForm extends Component {
 							<input type='text' id='cityName' name='cityName' onChange={this.handleChange} />
 							<label htmlFor='areaLocation'>District</label>
 							<BasicAutoSuggest getDistrictId={this.getDistrictId}/>
-							<img id='profile-img' src={this.state.profileImg} alt='Profile'/>
-							<div className='upload-btn-wrapper'>
-								<button className='btnFile'>Upload a file</button>
-								<input type='file' name='myfile'onChange={this.handleImageChange}/>
+							<div id='profile-image-cp'>
+								<label id='profile-img-label' htmlFor='profile-img'>Profile Picture</label>
+								<div>
+									<img id='profile-img' src={this.state.profileImg} alt='Profile'/>
+									<div className='upload-btn-wrapper'>
+										<button className='btnFile'>Upload a file</button>
+										<input type='file' name='myfile'onChange={this.handleImageChange}/>
+									</div>
+								</div>
 							</div>
 						</div>
 						<label htmlFor='mobileNo'>Mobile Number</label>

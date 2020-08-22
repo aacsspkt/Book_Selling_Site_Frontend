@@ -10,6 +10,7 @@ import NoMatch from './components/NoMatch'
 import AdminDash from'./components/admin/AdminDash'
 import AdminRoute from './components/AdminRoute'
 import BookDetail from './components/book/BookDetail'
+import UpdateProfile from './components/profile/UpdateProfile'
 
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />
 					<Route path='/profile' component={Profile} />
+					<Route path='/profile-update/:profileId' component={UpdateProfile} />
 					<AdminRoute path='/admin' component={AdminDash} />
 					<Route>
 						<NoMatch />
