@@ -1,3 +1,6 @@
+:-moz-any-link:focus {
+	outline: none;
+  }
 #dp.container{
 	width: auto;
 }
@@ -9,6 +12,7 @@
 
 #h1-dp {
 	margin-right: 2rem;
+	color: #577399;
 	
 }
 
@@ -60,4 +64,5 @@
 
 #right-panel-dp h3 {
 	font-size: 1.5rem;
+	color: #346250;
 }

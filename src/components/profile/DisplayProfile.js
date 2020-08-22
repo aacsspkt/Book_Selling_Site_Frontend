@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-
 import './DisplayProfile.css'
 
 export default class DisplayProfile extends Component {
@@ -11,17 +10,12 @@ export default class DisplayProfile extends Component {
 			token: this.props.token,
 			mobileNo: '',
             phoneNo: '',
-            hideContact: false,
-            filename: '',
-            myFile: null,
-            profileImg: null,
+            hidePhone: '',
             streetAddress: '',
             cityName: '',
             areaLocation: '',
             firstName: '',
             lastName: '',
-            isImageSelected: false,
-			submitted: false,
 			config:{
 				headers: {'Authorization': localStorage.getItem('token')}
 			}, 
@@ -32,11 +26,20 @@ export default class DisplayProfile extends Component {
 		console.log(this.state.token.profileId);
 		Axios.get(`http://localhost:3001/api/profiles/${this.state.token.profileId}`)
 		.then(res => {
-			console.log(res.data);
+			if (res.data.contact.hidePhone) {
+				this.setState({
+					mobileNo: "Hidden",
+					phoneNo: "Hidden"
+				})
+			} else {
+				this.setState({
+					mobileNo: res.data.contact.mobileNo,
+					phoneNo: res.data.contact.phoneNo,
+				})
+			}
+
 			this.setState({
-				mobileNo: res.data.contact.mobileNo,
-				phoneNo: res.data.contact.phoneNo,
-				hideContact: res.data.contact.hideContact,
+				hidePhone: res.data.contact.hidePhone,
 				streetAddress: res.data.address.streetAddress,
 				cityName: res.data.address.cityName,
 				areaLocation: res.data.address.areaLocation.name,
@@ -44,7 +47,12 @@ export default class DisplayProfile extends Component {
 				lastName: res.data.lastName,
 				profilePhoto: res.data.profilePhoto
 			})
-		})
+		}).catch(error => console.log(error));
+	}
+
+	handleUpdateBtnClick = profileId => {
+		console.log(profileId+ " profileId Display Profile");
+		this.props.history.push(`/profile-update/${profileId}`);
 	}
 	
 	render() {		
@@ -53,7 +61,7 @@ export default class DisplayProfile extends Component {
 				<div id='dp' className='container'>
 					<div id='head-dp'>
 						<h1 id='h1-dp'>Profile</h1>
-						<button id='btn-dp'>Update Profile</button>
+						<button onClick={() => this.handleUpdateBtnClick(this.state.token.profileId)} id='btn-dp'>Update Profile</button>
 					</div>
 					<div id='main-panel-dp'>
 						<div id='left-panel-dp'>
