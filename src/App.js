@@ -16,7 +16,7 @@ export default function App() {
 	return (
 		<div>
 			<BrowserRouter>
-			<Navigation />
+			{/* <Navigation /> */}
 			<div className="main-content">		
 				<Switch>
 					<Route path='/book' exact component={Book} />

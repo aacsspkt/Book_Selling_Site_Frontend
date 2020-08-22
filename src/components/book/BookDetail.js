@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Axios from 'axios'
 import './BookDetail.css'
+import Navigation from '../navigation/Navigation';
 
 
 export default function BookDetail() {
@@ -72,7 +73,8 @@ export default function BookDetail() {
 	
 	render() {
 		return (
-			<div>
+			<>
+				<Navigation />
 				<div id="mini-nav">
 						<Link to='/book'>Book</Link> &gt; <span>{this.state.title}</span>
 				</div>
@@ -109,7 +111,7 @@ export default function BookDetail() {
 						</div>
 					</div>
 				</div>
-			</div>	
+			</>	
 		)
 	}
 }

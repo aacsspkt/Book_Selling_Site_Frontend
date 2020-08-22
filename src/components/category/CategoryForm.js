@@ -2,12 +2,11 @@ import React from 'react'
 
 export default function CategoryForm(props) {
 	return (
-		<form id='districtForm'>
+		<form id='categoryForm'>
 				<label htmlFor='name'>Category Name</label>
 				<input type='text' id='name' name='name'
 				value={props.name}
 				onChange={props.handleChange}/>
-					
 				{
 					props.isEdit ? (
 						<div className='flex-center'> 

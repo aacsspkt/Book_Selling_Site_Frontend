@@ -3,6 +3,8 @@ import Axios from 'axios'
 import { Redirect, Link } from 'react-router-dom';
 import './Login.css'
 import jwtDecode from 'jwt-decode';
+import Navigation from '../navigation/Navigation';
+
 
 export default class LoginPanel extends Component {
     constructor(props) {
@@ -24,6 +26,7 @@ export default class LoginPanel extends Component {
 			console.log(res.data.token);
 			localStorage.setItem('token', res.data.token);
 			let user = jwtDecode(res.data.token.split(' ')[1]);
+
 			if (user.role === 'admin') this.setState({ isAdmin: true })
 			else this.setState({ isBasic: true })
 		}).catch(err => console.log(err));		
@@ -36,17 +39,20 @@ export default class LoginPanel extends Component {
             return <Redirect to='/book' />
         }
         return (
-            <div className='flex-center'>
-				<div className='container'>
-					<LoginForm 
-						username={this.state.username}
-						password={this.state.password}
-						handleChange={this.handleChange}
-						handleLogin={this.handleLogin}
-					/>
-					<SignUp/>
+			<div>
+				<Navigation />
+				<div className='flex-center'>
+					<div className='container'>
+						<LoginForm 
+							username={this.state.username}
+							password={this.state.password}
+							handleChange={this.handleChange}
+							handleLogin={this.handleLogin}
+						/>
+						<SignUp/>
+					</div>
 				</div>
-            </div>
+			</div>
         )
     }
 };
@@ -54,7 +60,7 @@ export default class LoginPanel extends Component {
 function SignUp() {
     return (
         <div>
-            <p id='link-signUp'>Don't have an account? <Link to='/profile'>Sign Up</Link></p>
+            <p id='link-signUp'>Don't have an account? <Link to='/register'>Sign Up</Link></p>
         </div>
     )
 }

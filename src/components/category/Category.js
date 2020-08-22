@@ -4,6 +4,7 @@ import '../district/District.css'
 import ModalBox from '../modalbox/ModalBox'
 import CategoryForm from './CategoryForm'
 import CategoryList from './CategoryList'
+import Navigation from '../navigation/Navigation'
 
 
 export default class Category extends Component {
@@ -118,32 +119,35 @@ export default class Category extends Component {
 	
 	render() {
 		return (
-			<div className='flex-center'>
-				<div className='container'>
-					 <ModalBox 
-					 	displayModal={this.displayModal}
-						 hideModal={this.hideModal}
-						 handleDeleteAll={this.handleDeleteAll}/>
-					<div id='top'>
-						<h1 id='district-h1'>Manage Categories</h1>
-						<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
-							Delete All</button>
-					</div>
-				
-					<CategoryForm
-						handlePost={this.handlePost}
-						handleChange={this.handleChange}
-						name={this.state.name}
-						clearText={this.clearForm}
-						isEdit={this.state.isEdit}
-					/>
-					<CategoryList 
-						categories={this.state.categories}
-						handleDelete={this.handleDelete}
-						editCategory={this.editCategory}
+			<>
+				<Navigation />
+				<div className='flex-center'>
+					<div className='container'>
+						<ModalBox 
+							displayModal={this.displayModal}
+							hideModal={this.hideModal}
+							handleDeleteAll={this.handleDeleteAll}/>
+						<div id='top'>
+							<h1 id='district-h1'>Manage Categories</h1>
+							<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
+								Delete All</button>
+						</div>
+						<CategoryForm
+							handlePost={this.handlePost}
+							handleChange={this.handleChange}
+							name={this.state.name}
+							clearText={this.clearForm}
+							isEdit={this.state.isEdit}
 						/>
+						<CategoryList 
+							categories={this.state.categories}
+							handleDelete={this.handleDelete}
+							editCategory={this.editCategory}
+						/>
+					</div>
 				</div>
-			</div>
+			</>
+
 		)
 	}
 }

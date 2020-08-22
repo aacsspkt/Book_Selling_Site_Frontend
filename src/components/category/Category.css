@@ -1,0 +1,22 @@
+
+#top {
+	display: flex;
+	justify-content: space-between;
+}
+
+#category-h1 {
+	font-size: 2.5rem;
+}
+
+.del, .edit {
+	font-size: 1.8rem;
+	margin-right: 1rem;
+	margin-left: 1rem;
+	color: grey;
+}
+
+.del:hover, .edit:hover {
+	color: black;
+
+}
+

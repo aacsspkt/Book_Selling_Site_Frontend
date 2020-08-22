@@ -1,0 +1,63 @@
+#dp.container{
+	width: auto;
+}
+#head-dp {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#h1-dp {
+	margin-right: 2rem;
+	
+}
+
+#btn-dp {
+		background-color: #346250;
+		color: white;
+		padding: 10px 20px;
+		margin: 8px 0;
+		border: none;
+		border-radius: 10px;
+		cursor: pointer;
+}
+
+#main-panel-dp {
+	display: flex;
+}
+
+#left-panel-dp {
+	background: gainsboro;
+	margin-right: 1rem;
+}
+
+#profile-img-dp {
+	width: 250px;
+	padding-bottom: 1rem;
+
+}
+#main-panel-dp #left-panel-dp .label-row {
+	display: flex;
+	justify-content: center;
+}
+#main-panel-dp #left-panel-dp .label-row p:last-child {
+	margin-bottom: 1.5rem;
+}
+
+#main-panel-dp .label-row p{
+	font-size: 1.5rem;
+	margin: 0.5rem 0;
+	color: rgb(109, 108, 108);
+}
+
+#main-panel-dp .label-row p span {
+	color: #346250;
+}
+
+#right-panel-dp p {
+	line-height: 3.0rem;
+}
+
+#right-panel-dp h3 {
+	font-size: 1.5rem;
+}

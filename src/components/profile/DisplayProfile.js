@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 
+import './DisplayProfile.css'
+
 export default class DisplayProfile extends Component {
 	constructor(props) {
 		super(props)
@@ -47,42 +49,46 @@ export default class DisplayProfile extends Component {
 	
 	render() {		
 		return (
-			<div>
-				<div id='head-dp'>
-					<h1 className='h1-center'>Profile</h1>
-					<button>Update Profile</button>
-				</div>
-				<div id='left-panel-dp'>
-					<img id='profile-img-dp' src={"http://localhost:3001/uploads/" + this.state.profilePhoto} alt='Book-item' />
-					<div className='label-row'>
-						<p><span>First Name: </span>{this.state.firstName}</p>
+			<div className='flex-center'>
+				<div id='dp' className='container'>
+					<div id='head-dp'>
+						<h1 id='h1-dp'>Profile</h1>
+						<button id='btn-dp'>Update Profile</button>
 					</div>
-					<div className='label-row'>
-						<p><span>Last Name: </span>{this.state.lastName}</p>
-					</div>
-				</div>
-				<div id='right-panel-dp'>
-					<div id='contact-panel-dp'>
-						<h3>Contact</h3>
-						<div className='line' />
-						<div className='label-row'>
-							<p><span>Phone No: </span>{this.state.phoneNo}</p>
+					<div id='main-panel-dp'>
+						<div id='left-panel-dp'>
+							<img id='profile-img-dp' src={"http://localhost:3001/uploads/" + this.state.profilePhoto} alt='Book-item' />
+							<div className='label-row'>
+								<p><span>First Name: </span>{this.state.firstName}</p>
+							</div>
+							<div className='label-row'>
+								<p><span>Last Name: </span>{this.state.lastName}</p>
+							</div>
 						</div>
-						<div className='label-row'>
-							<p><span>Mobile No: </span>{this.state.mobileNo}</p>
-						</div>
-					</div>
-					<div id='address-panel-dp'>
-						<h3>Address</h3>
-						<div className='line' />
-						<div className='label-row'>
-							<p><span>Street Address: </span>{this.state.streetAddress}</p>
-						</div>
-						<div className='label-row'>
-							<p><span>City Name: </span>{this.state.cityName}</p>
-						</div>
-						<div className='label-row'>
-							<p><span>Area Location: </span>{this.state.areaLocation}</p>
+						<div id='right-panel-dp'>
+							<div id='contact-panel-dp'>
+								<h3>Contact</h3>
+								<div className='line' />
+								<div className='label-row'>
+									<p><span>Phone No: </span>{this.state.phoneNo}</p>
+								</div>
+								<div className='label-row'>
+									<p><span>Mobile No: </span>{this.state.mobileNo}</p>
+								</div>
+							</div>
+							<div id='address-panel-dp'>
+								<h3>Address</h3>
+								<div className='line' />
+								<div className='label-row'>
+									<p><span>Street Address: </span>{this.state.streetAddress}</p>
+								</div>
+								<div className='label-row'>
+									<p><span>City Name: </span>{this.state.cityName}</p>
+								</div>
+								<div className='label-row'>
+									<p><span>Area Location: </span>{this.state.areaLocation}</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
