@@ -4,12 +4,14 @@ import './AddBook.css'
 import Axios from 'axios'
 import Navigation from '../navigation/Navigation'
 import { Redirect } from 'react-router-dom'
+import jwtDecode from 'jwt-decode'
 
 export default class AddBook extends Component {
 	constructor(props) {
 		super(props)
 	
 		this.state = {
+			token: null,
 			title: '',
 			author: '',
 			publication: '',
@@ -72,6 +74,10 @@ export default class AddBook extends Component {
 	}
 	
 	componentDidMount = () => {
+		try {
+			this.setState( {token: jwtDecode(localStorage.getItem('token'))} ); 
+		} catch (error) {console.log(error)}
+
 		Axios.get('http://localhost:3001/api/categories')
 		.then(res => {
 			console.log(res)
@@ -82,6 +88,24 @@ export default class AddBook extends Component {
 	render() {
 		if (this.state.submitted) {
 			return <Redirect to='/book' />
+		}
+		//Just to make sure ...
+		if (this.state.token === null || this.state.token === undefined) {
+			return (
+				<>
+					<Navigation />
+					<h1>Please create user account ...</h1>
+				</>
+			)
+		}
+		
+		if (this.state.token.profileId === null || this.state.token.profileId === undefined) {
+			return(
+				<>
+				<Navigation />
+				<h1>Please create a profile to add book ...</h1>
+				</>
+			)
 		}
 		return (
 			<>
