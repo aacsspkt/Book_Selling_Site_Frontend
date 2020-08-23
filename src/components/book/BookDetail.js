@@ -68,7 +68,10 @@ export default function BookDetail() {
 				console.log(res.data.name);
 				this.setState({district: res.data.name});
 			}).catch(err => console.log(err.response));
+			
 		}).catch(err => console.log(err.response));
+
+	
 	}
 	
 	render() {

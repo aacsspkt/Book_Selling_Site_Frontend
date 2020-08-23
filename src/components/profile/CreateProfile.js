@@ -95,7 +95,7 @@ export default class CreateProfileForm extends Component {
                 this.setState({submitted: true, _id: res.data._id});
                 console.log(res.data);
 			}).catch(err => console.log(err));
-        }, 2000);
+        }, 1500);
 	}
 
 	render() {
