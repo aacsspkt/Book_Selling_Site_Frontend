@@ -97,6 +97,7 @@ function LoggedInNavigation(props) {
 			<div className='nav' id='nav'>
 				<NavLink to='/book' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
 				<NavLink to='/book'>Book</NavLink>
+				<NavLink to='/add-book'>Add Book</NavLink>
 				<NavLink to='/profile'>Profile</NavLink> 
 				<div id='hamburger-menu' className='icon' href="#" onClick={props.toggleMenu}>
 					<FontAwesomeIcon icon={faBars} />

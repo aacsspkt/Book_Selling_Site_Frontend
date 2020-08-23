@@ -1,0 +1,111 @@
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: #577399;
+	background-image: none;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+	display: none;
+  }
+  /* Custom Select */
+  .select {
+	position: relative;
+	display: flex;
+	width: 20em;
+	height: 3em;
+	line-height: 3;
+	background: #577399;
+	overflow: hidden;
+	border-radius: .25em;
+	margin: 1rem 0;
+
+  }
+
+  select {
+	flex: 1;
+	padding: 0 .5em;
+	color: #fff;
+	cursor: pointer;
+  }
+
+  /* Arrow */
+  .select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: #577399;
+	cursor: pointer;
+	pointer-events: none;
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+	color: #D1F0B1;;
+  }
+  option:disabled {
+	color: lightyellow;
+  }
+  #addBook {
+	margin-bottom: 2rem;
+}
+
+#image {
+	width: 100px;
+	height: 100px;
+	margin-right: 2rem;
+}
+#book-image-bp {
+	display: flex;
+	flex-direction: column;
+}
+
+#book-img-label {
+	margin: 1rem 0;
+}
+
+.upload-btn-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+  }
+
+  .h1-center {
+	padding-top: 0;
+}
+  
+  .btnFile {
+	cursor: pointer;
+	border: 2px solid gray;
+	color: gray;
+	background-color: white;
+	padding: 8px 20px;
+	border-radius: 8px;
+	font-size: 1.4rem;
+	font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+	cursor: pointer;
+
+	font-size: 3rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+  }
+
+ 
+  
+
+  
+  

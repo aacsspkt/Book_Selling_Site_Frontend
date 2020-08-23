@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import '../district/District.css'
 import ModalBox from '../modalbox/ModalBox'
-import CategoryForm from './CategoryForm'
-import CategoryList from './CategoryList'
 import Navigation from '../navigation/Navigation'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 
 export default class Category extends Component {
@@ -152,5 +152,48 @@ export default class Category extends Component {
 	}
 }
 
+function CategoryForm(props) {
+	return (
+		<form id='categoryForm'>
+				<label htmlFor='name'>Category Name</label>
+				<input type='text' id='name' name='name'
+				value={props.name}
+				onChange={props.handleChange}/>
+				{
+					props.isEdit ? (
+						<div className='flex-center'> 
+							<button className='btnJoin' onClick={props.handlePost}>Update</button>
+							<button id='btnCancel' className='btnJoin' onClick={props.clearText}>Cancel</button>
+						</div>
+					) : (	
+						<div className='flex-center'>
+							<button className='btnJoin' onClick={props.handlePost}>Add</button>
+							<button id='btnCancel' className='btnJoin' onClick={props.clearText}>Clear</button>
+						</div>
+					) 
+				}			
+		</form>
+	)
+}
+
+function CategoryList(props) {
+	return (
+		<div>
+			<ul className='ul-list'>
+				{
+					props.categories.map(category => {
+						return <div className='row'  key={category._id}>
+									<li className='list'>{category.name}</li>
+									<div className='icons'>
+										<FontAwesomeIcon className='edit' onClick={() => props.editCategory(category._id)} icon={faEdit} />
+										<FontAwesomeIcon onClick={() => props.handleDelete(category._id)} className='del' icon={faTimes} />
+									</div>
+								</div>
+					})
+				}
+			</ul>
+		</div>
+	)
+}
 
 

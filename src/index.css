@@ -126,15 +126,14 @@ background-color: var(--color-blue);
 .btnMain:hover, .btnOpt:hover, .btnMainWide:hover {
 	opacity: 0.8;
 }
-
 .main-content {
 	margin-top: 70px;
-	padding: 0px 10px;
 }
 
 .flex-center {
 	display: flex;
 	justify-content: center;
+	padding: 0 10px;
 }
 
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Login from './components/login/Login'
-import Navigation from './components/navigation/Navigation'
 import Profile from './components/profile/Profile'
 import District from './components/district/District'
 import Book from './components/book/Book'
@@ -11,17 +10,18 @@ import AdminDash from'./components/admin/AdminDash'
 import AdminRoute from './components/AdminRoute'
 import BookDetail from './components/book/BookDetail'
 import UpdateProfile from './components/profile/UpdateProfile'
+import AddBook from './components/book/AddBook'
 
 
 export default function App() {
 	return (
 		<div>
 			<BrowserRouter>
-			{/* <Navigation /> */}
 			<div className="main-content">		
 				<Switch>
 					<Route path='/book' exact component={Book} />
 					<Route path='/book/:bookId' exact component={BookDetail} />
+					<Route path='/add-book' exact component={AddBook} />
 					<Route path='/register/' component={Register} />
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />

@@ -140,8 +140,6 @@ export default function UpdateProfile (props) {
 								<input type='text' id='streetAddress' name='streetAddress' onChange={this.handleChange} value={this.state.streetAddress}/>
 								<label htmlFor='cityName'>City Name</label>
 								<input type='text' id='cityName' name='cityName' onChange={this.handleChange} value={this.state.cityName} />
-								<label htmlFor='areaLocation'>District</label>
-								<BasicAutoSuggest getDistrictId={this.getDistrictId} />
 								<div id='profile-image-cp'>
 									<label id='profile-img-label' htmlFor='profile-img'>Profile Picture</label>
 									<div>
@@ -156,12 +154,14 @@ export default function UpdateProfile (props) {
 							<label htmlFor='mobileNo'>Mobile Number</label>
 							<input type='text'id='mobileNo' name='mobileNo'onChange={this.handleChange} value={this.state.mobileNo} />
 							<label htmlFor='phoneNo'>Phone No</label>
-							<input value={this.phoneNo} type='text'name='phoneNo' onChange={ this.handleChange } value={this.state.phoneNo} />
+							<input type='text'name='phoneNo' onChange={ this.handleChange } value={this.state.phoneNo} />
 							<label htmlFor='hideContact' className='checkbox-container'>
-								<input id='hideContact' type='checkbox'value={this.hideContact} onChange={ this.handleCheckChange } value={this.state.hideContact} />
+								<input id='hideContacts' type='checkbox' onChange={ this.handleCheckChange } value={this.state.hideContact} />
 								<span className='checkmark'/>
 								Hide contacts
 							</label>
+							<label htmlFor='areaLocation'>District</label>
+								<BasicAutoSuggest getDistrictId={this.getDistrictId} />
 							<div className='flex-center'>
 								<button className='btnMain'>Create</button>
 							</div>

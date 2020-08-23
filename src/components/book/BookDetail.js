@@ -36,7 +36,7 @@ export default function BookDetail() {
 			phoneNo: '',
 			district: '',
 			cityName: '',
-			streetAddress: ''
+			streetAddress: '',
 		}
 	}
 
@@ -94,6 +94,7 @@ export default function BookDetail() {
 									publication={this.state.publication}
 									condition={this.state.condition}
 									category={this.state.category}
+									deliveryArea={this.state.deliveryArea}
 								/>
 							</div>
 						</div>
@@ -128,6 +129,9 @@ function BookSpec (props) {
 			</div>
 			<div className='label-row'>
 				<p><span>Condition: </span>{props.condition}</p>
+			</div>
+			<div className='label-row'>
+				<p><span>Delivery Area: </span>{props.deliveryArea}</p>
 			</div>
 		</div>
 	)
