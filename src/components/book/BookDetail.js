@@ -9,7 +9,7 @@ export default function BookDetail(props) {
 	let { bookId } = useParams();
 	return (
 		<div>
-			<Main bookId={bookId} />
+			<Main bookId={bookId} fromUserBook={props.location.fromUserBook} history={props.history}/>
 		</div>
 	)
 }
@@ -37,7 +37,26 @@ export default function BookDetail(props) {
 			district: '',
 			cityName: '',
 			streetAddress: '',
+			fromUserBook: this.props.fromUserBook,
+			config:{
+				headers: {'Authorization': localStorage.getItem('token')}
+			}, 
 		}
+	}
+
+	handleDelete = () => {
+		Axios.delete('http://localhost:3001/api/userbooks/' + this.state.bookId, this.state.config)
+		.then(res => {
+			this.props.history.push('/user-book');
+		})
+	}
+
+	handleClickUpdateBtn = () => {
+		this.props.history.push({
+			pathname: '/add-book',
+			isUpdate: true,
+			bookId: this.state.bookId
+		});
 	}
 
 	componentDidMount() {
@@ -69,8 +88,6 @@ export default function BookDetail(props) {
 				this.setState({district: res.data.name});
 			}).catch(err => console.log(err.response));
 		}).catch(err => console.log(err.response));
-
-	
 	}
 	
 	render() {
@@ -87,6 +104,11 @@ export default function BookDetail(props) {
 								<img id='book-detail-item-img' src={"http://localhost:3001/uploads/" + this.state.image} alt='Book-item' />
 							</div>
 							<div id='right-book-panel'>
+								{	
+									this.state.fromUserBook ? (
+										<Button handleDelete={this.handleDelete} handleClickUpdateBtn={this.handleClickUpdateBtn}/>
+									) : (<></>)
+								}
 								<h3 id='book-detail-h3'>{this.state.title}</h3>
 								<p id='book-detail-author'> by <span id='auth'>{this.state.author}</span></p>
 								<div className='line' />
@@ -116,6 +138,15 @@ export default function BookDetail(props) {
 			</>	
 		)
 	}
+}
+
+function Button(props) {
+	return (
+		<>
+			<button onClick={props.handleClickUpdateBtn}>Update</button>
+			<button onClick={props.handleDelete}>Delete</button>
+		</>
+	)
 }
 
 function BookSpec (props) {

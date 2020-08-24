@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import Axios from 'axios'
 import './BookItemGrid.css'
-import { config } from '@fortawesome/fontawesome-svg-core'
-import { Link } from 'react-router-dom'
 
 export default class BookItemGrid extends Component {
 	constructor(props) {
@@ -17,9 +15,15 @@ export default class BookItemGrid extends Component {
 
 	handleClick = bookId =>  {
 		if (this.props.fromBook) {
-			this.props.history.push(`/book/${bookId}`);
+			this.props.history.push({
+				pathname: `/book/${bookId}`,
+				fromUserBook: false
+			});
 		} else if (this.props.fromUserBook) {
-			this.props.history.push(`/user-book/${bookId}`);
+			this.props.history.push({
+				pathname: `/book/${bookId}`,
+				fromUserBook: true
+			});
 		}
 	}
 	
@@ -28,13 +32,13 @@ export default class BookItemGrid extends Component {
 			Axios.get('http://localhost:3001/api/books')
 			.then(res => {
 				console.log(res.data);
-				this.setState({books: res.data, fromUserBook:false, fromBook:false})
+				this.setState({books: res.data})
 			}).catch(err => console.log(err.response));
-		} else if (this.props.fromUserBook){
+		} else if (this.props.fromUserBook) {
 			Axios.get('http://localhost:3001/api/userbooks', this.state.config)
 			.then(res => {
 				console.log(res.data);
-				this.setState({books: res.data, fromUserBook:false, fromBook:false})
+				this.setState({books: res.data})
 			}).catch(err => console.log(err));
 		}
 	}

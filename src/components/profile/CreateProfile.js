@@ -91,7 +91,8 @@ export default class CreateProfileForm extends Component {
 				profile: this.state.profile
             }
             console.log(data);
-            Axios.post('http://localhost:3001/api/profiles', data, this.state.config).then(res => {
+			Axios.post('http://localhost:3001/api/profiles', data, this.state.config)
+			.then(res => {
                 this.setState({submitted: true, _id: res.data._id});
                 console.log(res.data);
 			}).catch(err => console.log(err));
