@@ -65,7 +65,7 @@ export default class AddBook extends Component {
 		}
 		this.uploadImg();
 		setTimeout(() => {
-			Axios.post('http://localhost:3001/api/books', this.state, this.state.config)
+			Axios.post('http://localhost:3001/api/userbooks', this.state, this.state.config)
 			.then(res => {
                 this.setState({submitted: true});
                 console.log(res.data);
@@ -100,8 +100,8 @@ export default class AddBook extends Component {
 		if (this.state.token.profileId === null || this.state.token.profileId === undefined) {
 			return(
 				<>
-				<Navigation />
-				<h1>Please create a profile to add book ...</h1>
+					<Navigation />
+					<h1>Please create a profile to add book ...</h1>
 				</>
 			)
 		}

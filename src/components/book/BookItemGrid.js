@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Axios from 'axios'
 import './BookItemGrid.css'
 import { config } from '@fortawesome/fontawesome-svg-core'
+import { Link } from 'react-router-dom'
 
 export default class BookItemGrid extends Component {
 	constructor(props) {
@@ -14,7 +15,14 @@ export default class BookItemGrid extends Component {
 		}
 	}
 
-	handleClick = bookId => this.props.history.push(`/book/${bookId}`);
+	handleClick = bookId =>  {
+		if (this.props.fromBook) {
+			this.props.history.push(`/book/${bookId}`);
+		} else if (this.props.fromUserBook) {
+			this.props.history.push(`/user-book/${bookId}`);
+		}
+	
+	}
 	
 	componentDidMount() {
 		if (this.props.fromBook) {
@@ -37,11 +45,14 @@ export default class BookItemGrid extends Component {
 			<div id='grid-container'>
 				{
 					this.state.books.map(book => {
-						return  <div id="book-item-row" key={book._id} onClick={() => this.handleClick(book._id)}>
-									<img id='book-item-img' src={"http://localhost:3001/uploads/" + book.image} alt='Book-item' />
-									<h3>{book.title}</h3>
-									<p> Rs. {book.cost}</p>
-								</div>
+						return  (
+							
+							<div id="book-item-row" key={book._id} onClick={() => this.handleClick(book._id)}>
+								<img id='book-item-img' src={"http://localhost:3001/uploads/" + book.image} alt='Book-item' />
+								<h3>{book.title}</h3>
+								<p> Rs. {book.cost}</p>
+							</div>
+						)
 					})
 				}
 			</div>

@@ -13,6 +13,7 @@ import UpdateProfile from './components/profile/UpdateProfile'
 import AddBook from './components/book/AddBook'
 import PrivateRoute from './components/PrivateRoute'
 import UserBook from './components/book/UserBook'
+import UserBookDetail from './components/book/UserBookDetail'
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
 					<Route path='/book' exact component={Book} />
 					<Route path='/book/:bookId' exact component={BookDetail} />
 					<Route path='/user-book' exact component={UserBook} />
+					<Route path='/user-book/:bookId' exact component={UserBookDetail} />
 					<PrivateRoute path='/add-book' exact component={AddBook} />
 					<Route path='/register/' component={Register} />
 					<Route path='/login' component={Login} />
