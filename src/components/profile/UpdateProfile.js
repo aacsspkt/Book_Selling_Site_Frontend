@@ -47,12 +47,11 @@ export default function UpdateProfile (props) {
     }
 
     handleImageChange = e => {
-		this.setState(
-			{
-				myFile: e.target.files[0],
-				profileImg: URL.createObjectURL(e.target.files[0]),
-         	    isImageSelected: true}
-			);
+		this.setState({
+			myFile: e.target.files[0],
+			profileImg: URL.createObjectURL(e.target.files[0]),
+			isImageSelected: true
+		});
     };
 
     handleCheckChange = () => {

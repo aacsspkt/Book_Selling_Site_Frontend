@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode'
 export default class AddBook extends Component {
 	constructor(props) {
 		super(props)
-	
+		
 		this.state = {
 			token: null,
 			title: '',
@@ -24,7 +24,9 @@ export default class AddBook extends Component {
 			config:{
 				headers: {'Authorization': localStorage.getItem('token')}
 			}, 
-			submitted: false
+			submitted: false,
+			isUpdate: this.props.location.isUpdate,
+			bookId: this.props.location.bookId
 		}
 	}
 
@@ -59,18 +61,29 @@ export default class AddBook extends Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		if (this.state.category === '') {
-			console.log("category is empty");
-			this.setState({category: this.state.categories[1]._id});
-		}
 		this.uploadImg();
-		setTimeout(() => {
-			Axios.post('http://localhost:3001/api/userbooks', this.state, this.state.config)
-			.then(res => {
-                this.setState({submitted: true});
-                console.log(res.data);
-			}).catch(err => console.log(err));
-        }, 1500);
+
+		if (this.state.category === '') 
+			this.setState({category: this.state.categories[1]._id});
+
+		if (this.state.isUpdate) {
+			setTimeout(() => {
+				Axios.put('http://localhost:3001/api/userbooks/' + this.state.bookId, this.state, this.state.config)
+				.then(res => {
+					this.setState({submitted: true});
+					console.log(res.data);
+				}).catch(err => console.log(err));
+			}, 1000);
+		} else {
+			setTimeout(() => {
+				Axios.post('http://localhost:3001/api/userbooks/', this.state, this.state.config)
+				.then(res => {
+					this.setState({submitted: true});
+					console.log(res.data);
+				}).catch(err => console.log(err));
+			}, 1000);
+		}
+		
 	}
 	
 	componentDidMount = () => {
@@ -82,6 +95,21 @@ export default class AddBook extends Component {
 		.then(res => {
 			console.log(res)
 			this.setState({categories: res.data});
+			if (this.state.isUpdate) {
+				Axios.get('http://localhost:3001/api/books/' + this.state.bookId)
+				.then(res =>{
+					console.log(res);
+					this.setState({
+						title: res.data.title,
+						author: res.data.author,
+						image: res.data.image,
+						condition: res.data.condition,
+						cost: res.data.cost,
+						category: res.data.category,
+						publication: res.data.publication
+					})
+				});
+			}
 		}).catch(error => console.log(error));
 	}
 
@@ -115,13 +143,13 @@ export default class AddBook extends Component {
 						<form onSubmit={e => this.handleSubmit(e)}>
 							<div id='addBook'>
 								<label htmlFor='title'>Title of book</label>
-								<input type='text' id='title' name='title'onChange={this.handleChange}/>
+								<input type='text' id='title' name='title' value={this.state.title} onChange={this.handleChange}/>
 								<label htmlFor='lastName'>Author of book</label>
-								<input type='text' id='author' name='author'onChange={this.handleChange}/>
+								<input type='text' id='author' name='author' value={this.state.author} onChange={this.handleChange}/>
 								<label htmlFor='publication'>Publication</label>
-								<input type='text' id='publication' name='publication' onChange={this.handleChange}/>
+								<input type='text' id='publication' name='publication' value={this.state.publication} onChange={this.handleChange}/>
 								<label htmlFor='cost'>Cost</label>
-								<input type='text' id='cost' name='cost' onChange={this.handleChange} />
+								<input type='text' id='cost' name='cost' value={this.state.cost} onChange={this.handleChange} />
 								<label htmlFor='category'>Category</label>
 								<div className="select">
 									<select name="category" id="category" onChange={this.handleChange}>

@@ -21,7 +21,6 @@ export default class BookItemGrid extends Component {
 		} else if (this.props.fromUserBook) {
 			this.props.history.push(`/user-book/${bookId}`);
 		}
-	
 	}
 	
 	componentDidMount() {

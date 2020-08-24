@@ -78,6 +78,14 @@ export default function UserBookDetail(props) {
 			this.props.history.push('/user-book');
 		})
 	}
+
+	handleClickDelBtn = () => {
+		this.props.history.push({
+			pathname: '/add-book',
+			isUpdate: true,
+			bookId: this.state.bookId
+		});
+	}
 	
 	render() {
 		return (
@@ -94,6 +102,7 @@ export default function UserBookDetail(props) {
 							</div>
 							<div id='right-book-panel'>
 								<button onClick={this.handleDelete}>Delete</button>
+								<button onClick={this.handleClickDelBtn}>Update</button>
 								<h3 id='book-detail-h3'>{this.state.title}</h3>
 								<p id='book-detail-author'> by <span id='auth'>{this.state.author}</span></p>
 								<div className='line' />
