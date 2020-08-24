@@ -9,7 +9,7 @@
 	margin-bottom: 15px;
 }
 
-#grid-container {
+/* #grid-container {
 	display: grid;
 	grid-template-columns: 25% 25% 25% 25%;
 	 row-gap: 0.5rem;
@@ -36,7 +36,7 @@
 
 #book-item-img {
 	width: 80%;
-}
+} */
 #jumbo {
 	margin-bottom: 1rem;
 }

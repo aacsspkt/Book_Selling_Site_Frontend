@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
+// import Axios from 'axios'
 import './Book.css'
+import BookItemGrid from './BookItemGrid'
 import Navigation from '../navigation/Navigation'
 
 export default function Book(props) {
@@ -12,7 +13,7 @@ export default function Book(props) {
 					<Jumbotron />
 					<div className='line'></div>
 					<div className='line'></div>
-					<BookItemGrid history={props.history} />
+					<BookItemGrid history={props.history} fromBook={true} />
 				</div>
 			</div>
 		</>
@@ -37,40 +38,40 @@ export default function Book(props) {
 	)
  }
 
-class BookItemGrid extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			books: [],
-		}
-	}
+//  class BookItemGrid extends Component {
+// 	constructor(props) {
+// 		super(props)
+// 		this.state = {
+// 			books: [],
+// 		}
+// 	}
 
-	handleClick = bookId => this.props.history.push(`/book/${bookId}`);
+// 	handleClick = bookId => this.props.history.push(`/book/${bookId}`);
 	
-	componentDidMount() {
-		Axios.get('http://localhost:3001/api/books')
-		.then(res => {
-			console.log(res.data);
-			this.setState({books: res.data})
-		}).catch(err => console.log(err.response));
-	}
+// 	componentDidMount() {
+// 		Axios.get('http://localhost:3001/api/books')
+// 		.then(res => {
+// 			console.log(res.data);
+// 			this.setState({books: res.data})
+// 		}).catch(err => console.log(err.response));
+// 	}
 	
-	render() {
-		return (
-			<div id='grid-container'>
-				{
-					this.state.books.map(book => {
-						return  <div id="book-item-row" key={book._id} onClick={() => this.handleClick(book._id)}>
-									<img id='book-item-img' src={"http://localhost:3001/uploads/" + book.image} alt='Book-item' />
-									<h3>{book.title}</h3>
-									<p> Rs. {book.cost}</p>
-								</div>
-					})
-				}
-			</div>
-		)
-	}
-}
+// 	render() {
+// 		return (
+// 			<div id='grid-container'>
+// 				{
+// 					this.state.books.map(book => {
+// 						return  <div id="book-item-row" key={book._id} onClick={() => this.handleClick(book._id)}>
+// 									<img id='book-item-img' src={"http://localhost:3001/uploads/" + book.image} alt='Book-item' />
+// 									<h3>{book.title}</h3>
+// 									<p> Rs. {book.cost}</p>
+// 								</div>
+// 					})
+// 				}
+// 			</div>
+// 		)
+// 	}
+// }
 
 
 

@@ -89,7 +89,6 @@ export default class AddBook extends Component {
 		if (this.state.submitted) {
 			return <Redirect to='/book' />
 		}
-		//Just to make sure ...
 		if (this.state.token === null || this.state.token === undefined) {
 			return (
 				<>
@@ -98,7 +97,6 @@ export default class AddBook extends Component {
 				</>
 			)
 		}
-		
 		if (this.state.token.profileId === null || this.state.token.profileId === undefined) {
 			return(
 				<>

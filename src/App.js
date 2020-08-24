@@ -11,6 +11,8 @@ import AdminRoute from './components/AdminRoute'
 import BookDetail from './components/book/BookDetail'
 import UpdateProfile from './components/profile/UpdateProfile'
 import AddBook from './components/book/AddBook'
+import PrivateRoute from './components/PrivateRoute'
+import UserBook from './components/book/UserBook'
 
 
 export default function App() {
@@ -21,7 +23,8 @@ export default function App() {
 				<Switch>
 					<Route path='/book' exact component={Book} />
 					<Route path='/book/:bookId' exact component={BookDetail} />
-					<Route path='/add-book' exact component={AddBook} />
+					<Route path='/user-book' exact component={UserBook} />
+					<PrivateRoute path='/add-book' exact component={AddBook} />
 					<Route path='/register/' component={Register} />
 					<Route path='/login' component={Login} />
 					<Route path='/district' component={District} />

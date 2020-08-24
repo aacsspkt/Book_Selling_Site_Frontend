@@ -49,7 +49,6 @@ export default class Navigation extends Component {
 		try {
 			this.setState( {token: jwtDecode(localStorage.getItem('token')), LoggedIn: true} ); 
 		} catch (error) {
-			console.log(error);
 		}
 	}	
 
@@ -96,9 +95,9 @@ function LoggedInNavigation(props) {
 		<div>
 			<div className='nav' id='nav'>
 				<NavLink to='/book' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
-				<NavLink to='/book'>Book</NavLink>
-				<NavLink to='/add-book'>Add Book</NavLink>
+				<NavLink to='/book'>Books</NavLink>
 				<NavLink to='/profile'>Profile</NavLink> 
+				<NavLink to='/user-book'>Your Books</NavLink>
 				<div id='hamburger-menu' className='icon' href="#" onClick={props.toggleMenu}>
 					<FontAwesomeIcon icon={faBars} />
 				</div>
