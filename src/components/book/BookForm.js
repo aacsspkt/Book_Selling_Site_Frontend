@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import defaultImg from './book-default.png'
-import './AddBook.css'
+import './BookForm.css'
 import Axios from 'axios'
 import Navigation from '../navigation/Navigation'
 import { Redirect } from 'react-router-dom'
@@ -83,7 +83,6 @@ export default class AddBook extends Component {
 				}).catch(err => console.log(err));
 			}, 1000);
 		}
-		
 	}
 	
 	componentDidMount = () => {
@@ -202,3 +201,7 @@ export default class AddBook extends Component {
 		)
 	}
 }
+
+
+
+
