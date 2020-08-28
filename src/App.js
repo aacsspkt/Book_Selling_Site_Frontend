@@ -27,8 +27,7 @@ export default function App() {
 					<PrivateRoute path='/add-book' exact component={AddBook} />
 					<Route path='/register/' component={Register} />
 					<Route path='/login' component={Login} />
-					<Route path='/district' component={District} />
-					<AdminRoute path='/profile' component={Profile} />
+					<Route path='/profile' component={Profile} />
 					<Route path='/profile-update/:profileId' component={UpdateProfile} />
 					<AdminRoute path='/admin' component={AdminDash} />
 					<Route>

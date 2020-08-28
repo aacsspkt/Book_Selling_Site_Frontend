@@ -95,6 +95,24 @@
 	color: #346250;
 }
 
+#btnUpdate-bd {
+	background: #577399;
+	color: white;
+	padding: 10px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+}
+#btnDel-bd {
+	background: #fe5f55;
+	color: white;
+	padding: 10px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+
+}
+
 #seller-detail-panel h3 {
 	text-align: center;
 }

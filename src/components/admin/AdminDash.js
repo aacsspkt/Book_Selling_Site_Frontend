@@ -9,10 +9,15 @@ export default class AdminDash extends Component {
 		return (
 			<div>
 				<Navigation />
+				<div className='flex-center'>
+				<div className='container'>
 				<ul>
 					<Link to='/admin/district'><li>District</li></Link>
 					<Link to='/admin/category'><li>Categories</li></Link>
 				</ul>
+				</div>
+				</div>
+
 				<Switch>
 					<Route path='/admin/district' component={District}></Route>
 					<Route path='/admin/category' component={Category}></Route>

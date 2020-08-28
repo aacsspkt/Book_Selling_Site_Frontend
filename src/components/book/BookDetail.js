@@ -101,7 +101,7 @@ export default function BookDetail(props) {
 					<div  className='book-detail-container'>
 						<div id='top-book-panel'>
 							<div id='left-book-panel'>
-								<img id='book-detail-item-img' src={"http://localhost:3001/uploads/" + this.state.image} alt='Book-item' />
+								<img id='book-detail-item-img' src={"http://localhost:3001/uploads/"+ this.state.image} alt='Book-item' />
 							</div>
 							<div id='right-book-panel'>
 								{	
@@ -142,10 +142,10 @@ export default function BookDetail(props) {
 
 function Button(props) {
 	return (
-		<>
-			<button onClick={props.handleClickUpdateBtn}>Update</button>
-			<button onClick={props.handleDelete}>Delete</button>
-		</>
+		<div>
+			<button  id='btnUpdate-bd' onClick={props.handleClickUpdateBtn}>Update</button>
+			<button  id='btnDel-bd' onClick={props.handleDelete}>Delete</button>
+		</div>
 	)
 }
 

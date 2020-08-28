@@ -144,7 +144,7 @@ export default function UpdateProfile (props) {
 									<div>
 										<img id='profile-img' src= { this.state.profileImg } alt='Profile'/>
 										<div className='upload-btn-wrapper'>
-											<button className='btnFile'>Update profile picture</button>
+											<button className='btnFile'>Update pic</button>
 											<input type='file' name='myfile' onChange={this.handleImageChange}/>
 										</div>
 									</div>

@@ -26,7 +26,8 @@ export default class AddBook extends Component {
 			}, 
 			submitted: false,
 			isUpdate: this.props.location.isUpdate,
-			bookId: this.props.location.bookId
+			bookId: this.props.location.bookId,
+			imageURL: 'http://localhost:3001/uploads/'
 		}
 	}
 
@@ -38,7 +39,8 @@ export default class AddBook extends Component {
 		this.setState({
 			myFile: e.target.files[0],
 			image: URL.createObjectURL(e.target.files[0]),
-			isImageSelected: true
+			isImageSelected: true,
+			imageURL: ''
 		});
 	};
 	
@@ -134,11 +136,10 @@ export default class AddBook extends Component {
 		}
 		return (
 			<>
-				<Navigation />
+				<Navigation isUpdate={this.props.location.isUpdate} />
 				<div className='flex-center'>
 					<div className='container'>
-						<h1 className='h1-center'>Post your book ad ...</h1>
-						<h4 className='h4-center'>Enter book details below</h4>
+						<Top isUpdate={this.props.location.isUpdate} />
 						<form onSubmit={e => this.handleSubmit(e)}>
 							<div id='addBook'>
 								<label htmlFor='title'>Title of book</label>
@@ -160,7 +161,6 @@ export default class AddBook extends Component {
 										}
 									</select>
 								</div>
-								
 							<label htmlFor='deliveryArea'>Delivery Area</label>
 							<div className="select">
 								<select name="deliveryArea" id="slct" onChange={this.handleChange} >
@@ -179,28 +179,47 @@ export default class AddBook extends Component {
 								</select>
 							</div>
 							<div id='book-image-ab'>
-									<label id='book-img-label' htmlFor='book-img'>Book Picture</label>
-									<div>
-										<img id='image' src={this.state.image} alt='Book'/>
-										<div className='upload-btn-wrapper'>
-											<button className='btnFile'>Upload a pic</button>
-											<input type='file' name='myfile' onChange={this.handleImageChange}/>
-										</div>
+								<label id='book-img-label' htmlFor='book-img'>Book Picture</label>
+								<div>
+									{
+										this.state.isUpdate ? (
+											<img id='image' src={this.state.imageURL + this.state.image} alt='Book'/>
+										):(
+											<img id='image' src={this.state.image} alt='Book'/>
+										)
+									}
+									
+									<div className='upload-btn-wrapper'>
+										<button className='btnFile'>Upload a pic</button>
+										<input type='file' name='myfile' onChange={this.handleImageChange}/>
 									</div>
 								</div>
+								</div>
 							</div>
-							
 							<div className='flex-center'>
 								<button className='btnMain'>Post</button>
 							</div>
 						</form>
-						
 					</div>
 				</div>
 			</>
 		)
 	}
 }
+
+function Top (props) {
+	console.log(props.isUpdate + "isUpdate")
+	if (props.isUpdate) {
+		return(<>	<h1 className='h1-center'>Update your book</h1>
+		<h4 className='h4-center'>Enter book details below</h4></>)
+	} else {
+		return (<>
+				<h1 className='h1-center'>Post your book ad.</h1>
+		<h4 className='h4-center'>Enter book details below</h4></>)
+	}
+}
+
+
 
 
 
