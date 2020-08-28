@@ -3,7 +3,7 @@ import Axios from 'axios'
 import './District.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
-import ModalBox from '../modalbox/ModalBox';
+import ModalBox from './ModalBox';
 
 
 export default class District extends Component {

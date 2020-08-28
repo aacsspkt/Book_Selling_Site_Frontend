@@ -1,0 +1,16 @@
+#dash-panel {
+	padding: 2rem;
+	display: flex;
+	margin-bottom: 2rem;
+	flex-direction: column;
+	border: 3px #c7c7c7 solid;
+}
+
+#dash-panel h1 {
+	margin-bottom: 1rem;
+}
+
+#dash-panel li {
+	font-size: 1.5rem;
+	padding: 1rem 0;
+}

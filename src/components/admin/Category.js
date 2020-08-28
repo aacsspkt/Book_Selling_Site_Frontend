@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import '../district/District.css'
-import ModalBox from '../modalbox/ModalBox'
+import './District.css'
+import ModalBox from './ModalBox'
 import Navigation from '../navigation/Navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
