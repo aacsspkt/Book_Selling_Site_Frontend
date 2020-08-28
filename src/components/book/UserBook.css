@@ -9,7 +9,7 @@
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 530px) {
 	#top-ub {
 		flex-direction: column;
 	}

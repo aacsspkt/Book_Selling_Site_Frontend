@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import './District.css'
+import './Category.css'
 import ModalBox from './ModalBox'
 import Navigation from '../navigation/Navigation'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -128,7 +128,7 @@ export default class Category extends Component {
 							hideModal={this.hideModal}
 							handleDeleteAll={this.handleDeleteAll}/>
 						<div id='top'>
-							<h1 id='district-h1'>Manage Categories</h1>
+							<h1 id='district-h1'>Manage Category	</h1>
 							<button id="btnDeleteAll" className='btnWarning' onClick={this.displayModal}>
 								Delete All</button>
 						</div>

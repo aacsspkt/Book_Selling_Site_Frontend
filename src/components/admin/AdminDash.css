@@ -1,16 +1,30 @@
 #dash-panel {
-	padding: 2rem;
 	display: flex;
-	margin-bottom: 2rem;
 	flex-direction: column;
-	border: 3px #c7c7c7 solid;
+	margin-bottom: 3rem;
 }
 
 #dash-panel h1 {
-	margin-bottom: 1rem;
+	padding: 1rem;
+	font-size: 2.5rem;
+	color: white;
+}
+#welcome {
+	background-color: #577399;
+}
+
+#dash-panel ul {
+	background-color: #EBEBFF;
+	padding: 12px;
 }
 
 #dash-panel li {
 	font-size: 1.5rem;
-	padding: 1rem 0;
+	margin: 1rem 0;
+	color: steelblue;
+	cursor: pointer;
+}
+
+#dash-panel li:hover {
+	opacity: 0.8;
 }

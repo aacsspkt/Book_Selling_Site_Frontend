@@ -46,7 +46,7 @@ export default function BookDetail(props) {
 	}
 
 	handleDelete = () => {
-		Axios.delete('http://localhost:3001/api/userbooks/' + this.state.bookId, this.state.config)
+		Axios.delete('http://localhost:3001/api/books/' + this.state.bookId, this.state.config)
 		.then(res => {
 			this.props.history.push('/user-book');
 		})

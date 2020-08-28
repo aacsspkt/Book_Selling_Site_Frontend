@@ -70,14 +70,14 @@ export default class AddBook extends Component {
 
 		if (this.state.isUpdate) {
 			setTimeout(() => {
-				Axios.put('http://localhost:3001/api/userbooks/' + this.state.bookId, this.state, this.state.config)
+				Axios.put('http://localhost:3001/api/books/' + this.state.bookId, this.state, this.state.config)
 				.then(res => {
 					this.setState({submitted: true});
 				}).catch(err => console.log(err));
 			}, 1000);
 		} else {
 			setTimeout(() => {
-				Axios.post('http://localhost:3001/api/userbooks/', this.state, this.state.config)
+				Axios.post('http://localhost:3001/api/books/', this.state, this.state.config)
 				.then(res => {
 					this.setState({submitted: true});
 				}).catch(err => console.log(err));

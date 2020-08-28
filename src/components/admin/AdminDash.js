@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import District from './District'
 import Category from './Category'
-import { Switch, Link, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Navigation from '../navigation/Navigation'
 import './AdminDash.css'
 
 export default class AdminDash extends Component {
+	constructor(props) {
+		super(props)
+	}
+	
+	handleClick = (route)  => {
+		this.props.history.push('/admin/' + route);
+	}
 	render() {
 		return (
 			<div>
@@ -13,10 +20,12 @@ export default class AdminDash extends Component {
 				<div className='flex-center'>
 					<div className='container'>
 						<div id='dash-panel'>
-							<h1>Welcome Admin !</h1>
+							<div id='welcome'>
+								<h1>Welcome Admin !</h1>
+							</div>
 							<ul>
-								<Link className='list-ad' to='/admin/district'><li>District</li></Link>
-								<Link className='list-ad'  to='/admin/category'><li>Categories</li></Link>
+								<li onClick={() => this.handleClick('district')}>District</li>
+								<li onClick={() => this.handleClick('category')}>Categories</li>
 							</ul>
 						</div>
 					</div>

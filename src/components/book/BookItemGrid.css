@@ -6,7 +6,6 @@
 	 text-align: center;
 }
 
-
 #book-item-row {
 	display: flex;
 	flex-direction: column;
@@ -16,8 +15,8 @@
 	-webkit-transition: 0.5s;
 	transition: 0.5s;
 	width: 100%;
-  text-align: center;
-  background-color: #f7f7ff;
+	text-align: center;
+	background-color: #f7f7ff;
 }
 #book-item-row h3{
 	padding-top: 1rem;
@@ -25,4 +24,16 @@
 
 #book-item-img {
 	width: 80%;
+}
+@media screen and (max-width:650px) {
+	#grid-container {
+		grid-template-columns: 33.33% 33.33% 33.33%;
+		
+	}	
+}
+@media screen and (max-width:400px) {
+	#grid-container {
+		grid-template-columns: 50% 50%;
+		
+	}	
 }

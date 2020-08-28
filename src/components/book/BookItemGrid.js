@@ -35,7 +35,7 @@ export default class BookItemGrid extends Component {
 				this.setState({books: res.data})
 			}).catch(err => console.log(err.response));
 		} else if (this.props.fromUserBook) {
-			Axios.get('http://localhost:3001/api/userbooks', this.state.config)
+			Axios.get('http://localhost:3001/api/books/user/book', this.state.config)
 			.then(res => {
 				console.log(res.data);
 				this.setState({books: res.data})

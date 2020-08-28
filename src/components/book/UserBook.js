@@ -11,7 +11,7 @@ export default function UserBook(props){
 			<div className='flex-center'>
 				<div className='container'>
 					<div id='top-ub'>
-						<h1 id='h1-ub'>Your posted books ...</h1>
+						<h1 id='h1-ub'>Your books ...</h1>
 						<Link to='add-book'><button className='btnMain'>Add new book</button></Link>
 					</div>
 					<BookItemGrid history={props.history} fromUserBook={true}/>
