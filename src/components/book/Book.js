@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 // import Axios from 'axios'
 import './Book.css'
 import BookItemGrid from './BookItemGrid'

@@ -65,7 +65,14 @@ export default class DisplayProfile extends Component {
 					</div>
 					<div id='main-panel-dp'>
 						<div id='left-panel-dp'>
-							<img id='profile-img-dp' src={"http://localhost:3001/uploads/" + this.state.profilePhoto} alt='Book-item' />
+							{/* To avoid accessing to public/uploads before state.image is defined */}
+							{
+								this.state.profilePhoto === undefined ? (
+									<img id='profile-img-dp' alt='Book-item' />
+								) : (
+									<img id='profile-img-dp' src={"http://localhost:3001/uploads/" + this.state.profilePhoto} alt='Book-item' />
+								)
+							}
 							<div className='label-row'>
 								<p><span>First Name: </span>{this.state.firstName}</p>
 							</div>

@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import BookItemGrid from './BookItemGrid'
 import Navigation from '../navigation/Navigation'
 import { Link } from 'react-router-dom'
-import './UserBook.css'
+import './UserBook.css' 
 
 export default function UserBook(props){
 	return (

@@ -72,7 +72,7 @@ export default class CreateProfileForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         this.uploadImg();
-        // To wait for upload res which contains profilePhoto file name.
+        // To wait for response of uploadImg() which contains profilePhoto file name.
         setTimeout(() => {
             const data = {
                 profilePhoto: this.state.filename,
@@ -90,7 +90,6 @@ export default class CreateProfileForm extends Component {
 				},
 				profile: this.state.profile
             }
-            console.log(data);
 			Axios.post('http://localhost:3001/api/profiles', data, this.state.config)
 			.then(res => {
                 this.setState({submitted: true, _id: res.data._id});

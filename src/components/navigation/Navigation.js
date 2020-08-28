@@ -14,7 +14,8 @@ export default class Navigation extends Component {
         this.state = {
 			toggle: true,
 			LoggedIn: false,
-			token: null
+			token: null,
+			justClicked:''
 		}	
 	}
 
@@ -33,12 +34,10 @@ export default class Navigation extends Component {
 
 		let main = document.querySelector('.main-content');
 		if (this.state.toggle){
-			console.log(true)
 			main.style.marginTop="0px";
 			this.setState({toggle: !this.state.toggle});
 			return;
 		} else if (!this.state.toggle){
-			console.log(false)
 			main.style.marginTop="70px";
 			this.setState({toggle: !this.state.toggle});
 		}
@@ -46,6 +45,7 @@ export default class Navigation extends Component {
 	}
 
 	handleMenuClick = () => {
+	
 		let main = document.querySelector('.main-content');
 		main.style.marginTop="70px";
 	}

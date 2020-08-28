@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Axios from 'axios'
+import defaultImg from './book-default.png'
 import './BookDetail.css'
 import Navigation from '../navigation/Navigation';
 
@@ -27,7 +28,7 @@ export default function BookDetail(props) {
 			deliveryArea: '',
 			cost: null,
 			category: '',
-			image: '',
+			image: defaultImg,
 			firstName: '',
 			lastName: '',
 			numberOfActiveAds: '',
@@ -101,7 +102,15 @@ export default function BookDetail(props) {
 					<div  className='book-detail-container'>
 						<div id='top-book-panel'>
 							<div id='left-book-panel'>
-								<img id='book-detail-item-img' src={"http://localhost:3001/uploads/"+ this.state.image} alt='Book-item' />
+								{/* To avoid accessing to public/uploads before state.image is defined */}
+								{
+									this.state.image.length > 35 ? (
+										<img id='book-detail-item-img' src={this.state.image} alt='Book-item' />
+
+									) : (
+										<img id='book-detail-item-img' src={"http://localhost:3001/uploads/"+ this.state.image} alt='Book-item' />
+									)
+								}
 							</div>
 							<div id='right-book-panel'>
 								{	
