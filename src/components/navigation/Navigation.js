@@ -12,8 +12,7 @@ export default class Navigation extends Component {
         super(props)
 
         this.state = {
-			activeNav: '',
-			toggle: 'false',
+			toggle: true,
 			LoggedIn: false,
 			token: null
 		}	
@@ -34,16 +33,22 @@ export default class Navigation extends Component {
 
 		let main = document.querySelector('.main-content');
 		if (this.state.toggle){
-			main.style.marginTop="10px";
+			console.log(true)
+			main.style.marginTop="0px";
 			this.setState({toggle: !this.state.toggle});
 			return;
-		} 
-
-		main.style.marginTop="70px";
-		this.setState({toggle: !this.state.toggle});
+		} else if (!this.state.toggle){
+			console.log(false)
+			main.style.marginTop="70px";
+			this.setState({toggle: !this.state.toggle});
+		}
+		
 	}
 
-
+	handleMenuClick = () => {
+		let main = document.querySelector('.main-content');
+		main.style.marginTop="70px";
+	}
 
 	componentDidMount = () => {
 		try {
@@ -58,6 +63,7 @@ export default class Navigation extends Component {
 				<LoggedInNavigation 
 					toggleMenu={this.toggleMenu}
 					handleLogout={this.handleLogout}
+					handleMenuClick={this.handleMenuClick}
 				/>
 			)
 		} else if (!this.state.LoggedIn) {
@@ -65,6 +71,7 @@ export default class Navigation extends Component {
 				<LoggedOutNavigation 
 					toggleMenu={this.toggleMenu}
 					handleLogout={this.handleLogout}
+					handleMenuClick={this.handleMenuClick}
 				/>	
 			)
 		}
@@ -78,9 +85,9 @@ function LoggedOutNavigation(props) {
 			<div>
 				<div className='nav' id='nav'>
 					<NavLink to='/book' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
-					<NavLink to='/book'>Book</NavLink>
-					<NavLink to='/register'>Sign Up</NavLink> 
-					<NavLink to='/login'>Login</NavLink> 
+					<NavLink to='/book' onClick={props.handleMenuClick}>Book</NavLink>
+					<NavLink to='/register' onClick={props.handleMenuClick}>Sign Up</NavLink> 
+					<NavLink to='/login' onClick={props.handleMenuClick}>Login</NavLink> 
 					<div id='hamburger-menu' className='icon' href="#" onClick={props.toggleMenu}>
 						<FontAwesomeIcon icon={faBars} />
 					</div>
@@ -94,10 +101,10 @@ function LoggedInNavigation(props) {
 	return (
 		<div>
 			<div className='nav' id='nav'>
-				<NavLink to='/book' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
-				<NavLink to='/book'>Books</NavLink>
-				<NavLink to='/profile'>Profile</NavLink> 
-				<NavLink to='/user-book'>Your Books</NavLink>
+				<NavLink to='/book'  className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+				<NavLink to='/book' onClick={props.handleMenuClick} >Books</NavLink>
+				<NavLink to='/profile' onClick={props.handleMenuClick}>Profile</NavLink> 
+				<NavLink to='/user-book' onClick={props.handleMenuClick}>Your Books</NavLink>
 				<div id='hamburger-menu' className='icon' href="#" onClick={props.toggleMenu}>
 					<FontAwesomeIcon icon={faBars} />
 				</div>

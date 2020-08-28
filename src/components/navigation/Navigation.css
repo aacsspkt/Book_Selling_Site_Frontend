@@ -2,9 +2,9 @@
 	overflow: hidden;
 	background-color: #f7f7ff;
 	margin-bottom: 30px;
-	position: fixed; /* Set the navbar to fixed position */
 	top: 0; /* Position the navbar at the bottom of the page */
 	width: 100%; /* Full width */
+	position: absolute;
   }
   
   .nav a {

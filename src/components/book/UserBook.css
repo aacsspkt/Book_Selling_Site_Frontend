@@ -1,0 +1,16 @@
+#top-ub {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+#h1-ub {
+	color: #346250;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+@media screen and (max-width: 440px) {
+	#top-ub {
+		flex-direction: column;
+	}
+}
