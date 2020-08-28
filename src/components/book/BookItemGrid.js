@@ -46,7 +46,7 @@ export default class BookItemGrid extends Component {
 	render() {
 		return (
 			<div id='grid-container'>
-				{
+				{ 
 					this.state.books.map(book => {
 						return  (
 							

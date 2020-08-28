@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import BasicAutoSuggest from './BasicAutoSuggest'
 import Navigation from '../navigation/Navigation'
 import Axios from 'axios'
 import { useParams } from 'react-router-dom'
@@ -17,6 +16,7 @@ export default function UpdateProfile (props) {
 		super(props)
 	
 		this.state = {
+			districts:[],
 			profileId: props.id,
 			mobileNo: '',
             phoneNo: '',
@@ -61,7 +61,8 @@ export default function UpdateProfile (props) {
     }
 
     uploadImg = () => {
-        if (!this.state.isImageSelected)  return;
+		if (!this.state.isImageSelected)  return;
+		
         const formData = new FormData();
         formData.append('myFile', this.state.myFile);
         const config = {
@@ -79,6 +80,7 @@ export default function UpdateProfile (props) {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.uploadImg();
+
 		setTimeout(() => {
 			const data = {
 				profilePhoto: this.state.filename,
@@ -92,7 +94,7 @@ export default function UpdateProfile (props) {
 				address: {
 					streetAddress: this.state.streetAddress,
 					cityName: this.state.cityName,
-					areaLocation: this.state.areaLocation
+					areaLocation: this.state.district
 				},
 				profile: this.state.profile
 			}
@@ -114,12 +116,17 @@ export default function UpdateProfile (props) {
 				hideContact: res.data.contact.hideContact,
 				streetAddress: res.data.address.streetAddress,
 				cityName: res.data.address.cityName,
-				areaLocation: res.data.address.areaLocation.name,
 				firstName: res.data.firstName,
 				lastName: res.data.lastName,
 				profileImg: "http://localhost:3001/uploads/" + res.data.profilePhoto
 			})
+			Axios.get('http://localhost:3001/api/districts')
+			.then(res => {
+				console.log(res.data);
+				this.setState({districts: res.data});
+			}).catch(err => console.log(err));
 		});
+	
 	}
 	
 	render() {
@@ -160,7 +167,16 @@ export default function UpdateProfile (props) {
 								Hide contacts
 							</label>
 							<label htmlFor='areaLocation'>District</label>
-								<BasicAutoSuggest getDistrictId={this.getDistrictId} />
+							<div className="select">
+								<select name="district" id="district" onChange={this.handleChange}>
+									<option defaultValue="Choose district">Choose an option</option>
+									{
+										this.state.districts.map(district => {
+										return <option key={district._id} value={district._id}>{district.name}</option>
+										})
+									}
+								</select>
+							</div>
 							<div className='flex-center'>
 								<button className='btnMain'>Create</button>
 							</div>
