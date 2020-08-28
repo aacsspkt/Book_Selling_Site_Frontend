@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import BasicAutoSuggest from './BasicAutoSuggest'
 import './CreateProfile.css'
 import defaultImg from './profilepic.jpeg'
 import Axios from 'axios'
@@ -11,7 +10,9 @@ export default class CreateProfileForm extends Component {
         super(props)
 
         this.state = {
-            mobileNo: '',
+			districts: [],
+			mobileNo: '',
+			district:'',
             phoneNo: '',
             hideContact: false,
             filename: '',
@@ -19,7 +20,6 @@ export default class CreateProfileForm extends Component {
             profileImg: defaultImg,
             streetAddress: '',
             cityName: '',
-            areaLocation: '',
             firstName: '',
             lastName: '',
             isImageSelected: false,
@@ -43,7 +43,8 @@ export default class CreateProfileForm extends Component {
 			{
 				myFile: e.target.files[0],
 				profileImg: URL.createObjectURL(e.target.files[0]),
-         	    isImageSelected: true}
+				 isImageSelected: true
+			}
 			);
     };
 
@@ -86,7 +87,7 @@ export default class CreateProfileForm extends Component {
                 address: {
                     streetAddress: this.state.streetAddress,
                     cityName: this.state.cityName,
-                    areaLocation: this.state.areaLocation
+                    areaLocation: this.state.district
 				},
 				profile: this.state.profile
             }
@@ -97,6 +98,14 @@ export default class CreateProfileForm extends Component {
 			}).catch(err => console.log(err));
         }, 1500);
 	}
+
+	componentDidMount() {
+		Axios.get('http://localhost:3001/api/districts')
+		.then(res => {
+			console.log(res.data);
+			this.setState({districts: res.data});
+		}).catch(err => console.log(err));
+	};
 
 	render() {
 		if (this.state.submitted) {
@@ -119,7 +128,16 @@ export default class CreateProfileForm extends Component {
 							<label htmlFor='cityName'>City Name</label>
 							<input type='text' id='cityName' name='cityName' onChange={this.handleChange} />
 							<label htmlFor='areaLocation'>District</label>
-							<BasicAutoSuggest getDistrictId={this.getDistrictId}/>
+							<div className="select">
+								<select name="district" id="district" onChange={this.handleChange}>
+									<option defaultValue="Choose district">Choose an option</option>
+									{
+										this.state.districts.map(district => {
+										return <option key={district._id} value={district._id}>{district.name}</option>
+										})
+									}
+								</select>
+							</div>
 							<div id='profile-image-cp'>
 								<label id='profile-img-label' htmlFor='profile-img'>Profile Picture</label>
 								<div>

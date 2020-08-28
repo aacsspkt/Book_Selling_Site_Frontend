@@ -73,7 +73,6 @@ export default class AddBook extends Component {
 				Axios.put('http://localhost:3001/api/userbooks/' + this.state.bookId, this.state, this.state.config)
 				.then(res => {
 					this.setState({submitted: true});
-					console.log(res.data);
 				}).catch(err => console.log(err));
 			}, 1000);
 		} else {
@@ -81,7 +80,6 @@ export default class AddBook extends Component {
 				Axios.post('http://localhost:3001/api/userbooks/', this.state, this.state.config)
 				.then(res => {
 					this.setState({submitted: true});
-					console.log(res.data);
 				}).catch(err => console.log(err));
 			}, 1000);
 		}
@@ -183,7 +181,11 @@ export default class AddBook extends Component {
 								<div>
 									{
 										this.state.isUpdate ? (
-											<img id='image' src={this.state.imageURL + this.state.image} alt='Book'/>
+											this.state.image.length > 50 ? (
+												<img id='image' alt='Book'/>	
+											) : (
+												<img id='image' src={this.state.imageURL + this.state.image} alt='Book'/>	
+											) 
 										):(
 											<img id='image' src={this.state.image} alt='Book'/>
 										)
@@ -208,7 +210,6 @@ export default class AddBook extends Component {
 }
 
 function Top (props) {
-	console.log(props.isUpdate + "isUpdate")
 	if (props.isUpdate) {
 		return(<>
 			<h1 className='h1-center'>Update your book</h1>
