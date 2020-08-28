@@ -18,7 +18,7 @@ export default class AddBook extends Component {
 			image: defaultImg,
 			condition: 'New',
 			deliveryArea: 'Within city',
-			cost: null,
+			cost: '',
 			category: '',
 			categories: [],
 			config:{
@@ -156,7 +156,7 @@ export default class AddBook extends Component {
 										<option defaultValue disabled>Choose an option</option>
 										{
 											this.state.categories.map(category => {
-											return <option value={category._id}>{category.name}</option>
+											return <option key={category._id} value={category._id}>{category.name}</option>
 											})
 										}
 									</select>
@@ -210,12 +210,15 @@ export default class AddBook extends Component {
 function Top (props) {
 	console.log(props.isUpdate + "isUpdate")
 	if (props.isUpdate) {
-		return(<>	<h1 className='h1-center'>Update your book</h1>
-		<h4 className='h4-center'>Enter book details below</h4></>)
+		return(<>
+			<h1 className='h1-center'>Update your book</h1>
+			<h4 className='h4-center'>Enter book details below</h4>
+		</>)
 	} else {
 		return (<>
-				<h1 className='h1-center'>Post your book ad.</h1>
-		<h4 className='h4-center'>Enter book details below</h4></>)
+			<h1 className='h1-center'>Post your book ad.</h1>
+			<h4 className='h4-center'>Enter book details below</h4>
+		</>)
 	}
 }
 

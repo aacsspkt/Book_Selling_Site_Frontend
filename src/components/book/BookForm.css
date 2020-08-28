@@ -23,6 +23,7 @@ select {
 	background: #577399;
 	overflow: hidden;
 	border-radius: .25em;
+	font-size: 1.2rem;
 	margin: 1rem 0;
 
   }
@@ -32,6 +33,7 @@ select {
 	padding: 0 .5em;
 	color: #fff;
 	cursor: pointer;
+	font-size: 1.2rem;
   }
 
   /* Arrow */
