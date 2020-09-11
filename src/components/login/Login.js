@@ -36,7 +36,7 @@ export default class LoginPanel extends Component {
 		if (this.state.isAdmin) {
             return <Redirect to='/admin' />
         } else if (this.state.isBasic) {
-            return <Redirect to='/book' />
+            return <Redirect to='/' />
         }
         return (
 			<div>

@@ -84,8 +84,8 @@ function LoggedOutNavigation(props) {
 		<div>
 			<div>
 				<div className='nav' id='nav'>
-					<NavLink to='/book' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
-					<NavLink to='/book' onClick={props.handleMenuClick}>Book</NavLink>
+					<NavLink to='/' className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+					<NavLink to='/' onClick={props.handleMenuClick}>Book</NavLink>
 					<NavLink to='/register' onClick={props.handleMenuClick}>Sign Up</NavLink> 
 					<NavLink to='/login' onClick={props.handleMenuClick}>Login</NavLink> 
 					<div id='hamburger-menu' className='icon' href="#" onClick={props.toggleMenu}>
@@ -101,14 +101,14 @@ function LoggedInNavigation(props) {
 	return (
 		<div>
 			<div className='nav' id='nav'>
-				<NavLink to='/book'  className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
-				<NavLink to='/book' onClick={props.handleMenuClick} >Books</NavLink>
+				<NavLink to='/'  className='logo'><img id='logo' src={logo} alt='B-Share' /></NavLink>
+				<NavLink to='/' onClick={props.handleMenuClick} >Books</NavLink>
 				<NavLink to='/profile' onClick={props.handleMenuClick}>Profile</NavLink> 
 				<NavLink to='/user-book' onClick={props.handleMenuClick}>Your Books</NavLink>
 				<div id='hamburger-menu' className='icon' href="#" onClick={props.toggleMenu}>
 					<FontAwesomeIcon icon={faBars} />
 				</div>
-				<NavLink to='/book' onClick={props.handleLogout}>Logout</NavLink>
+				<NavLink to='/' onClick={props.handleLogout}>Logout</NavLink>
 			</div>
 		</div>
 	)

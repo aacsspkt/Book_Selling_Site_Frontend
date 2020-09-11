@@ -39,13 +39,11 @@ export default class CreateProfileForm extends Component {
     }
 
     handleImageChange = e => {
-		this.setState(
-			{
-				myFile: e.target.files[0],
-				profileImg: URL.createObjectURL(e.target.files[0]),
-				 isImageSelected: true
-			}
-			);
+		this.setState({
+			myFile: e.target.files[0],
+			profileImg: URL.createObjectURL(e.target.files[0]),
+			isImageSelected: true
+		});
     };
 
     handleCheckChange = e => {
@@ -89,7 +87,6 @@ export default class CreateProfileForm extends Component {
                     cityName: this.state.cityName,
                     areaLocation: this.state.district
 				},
-				profile: this.state.profile
             }
 			Axios.post('http://localhost:3001/api/profiles', data, this.state.config)
 			.then(res => {

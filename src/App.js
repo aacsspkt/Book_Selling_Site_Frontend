@@ -19,7 +19,7 @@ export default function App() {
 			<BrowserRouter>
 			<div className="main-content">		
 				<Switch>
-					<Route path='/book' exact component={Book} />
+					<Route path='/' exact component={Book} />
 					<Route path='/book/:bookId' exact component={BookDetail} />
 					<Route path='/user-book' exact component={UserBook} />
 					<PrivateRoute path='/add-book' exact component={AddBook} />

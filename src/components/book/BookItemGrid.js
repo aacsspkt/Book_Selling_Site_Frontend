@@ -49,7 +49,6 @@ export default class BookItemGrid extends Component {
 				{ 
 					this.state.books.map(book => {
 						return  (
-							
 							<div id="book-item-row" key={book._id} onClick={() => this.handleClick(book._id)}>
 								<img id='book-item-img' src={"http://localhost:3001/uploads/" + book.image} alt='Book-item' />
 								<h3>{book.title}</h3>

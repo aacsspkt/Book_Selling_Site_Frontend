@@ -1,5 +1,4 @@
 import React from 'react'
-// import Axios from 'axios'
 import './Book.css'
 import BookItemGrid from './BookItemGrid'
 import Navigation from '../navigation/Navigation'
@@ -20,7 +19,6 @@ export default function Book(props) {
 	)
 }
 
-
  function Jumbotron() {
 	return (
 		<div id='jumbo'>
@@ -37,5 +35,3 @@ export default function Book(props) {
 		</div>
 	)
  }
-
-

@@ -96,7 +96,7 @@ export default function BookDetail(props) {
 			<>
 				<Navigation />
 				<div id="mini-nav">
-						<Link to='/book'>Book</Link> &gt; <span>{this.state.title}</span>
+						<Link to='/'>Book</Link> &gt; <span>{this.state.title}</span>
 				</div>
 				<div className='flex-center'>
 					<div  className='book-detail-container'>

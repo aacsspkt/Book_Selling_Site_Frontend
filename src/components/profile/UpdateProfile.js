@@ -17,13 +17,15 @@ export default function UpdateProfile (props) {
 	
 		this.state = {
 			districts:[],
+			district: '',
 			profileId: props.id,
 			mobileNo: '',
             phoneNo: '',
             hideContact: false,
             filename: '',
             myFile: null,
-            profileImg: '',
+			profileImg: '',
+			profileImgURL: '',
             streetAddress: '',
             cityName: '',
             areaLocation: '',
@@ -49,7 +51,7 @@ export default function UpdateProfile (props) {
     handleImageChange = e => {
 		this.setState({
 			myFile: e.target.files[0],
-			profileImg: URL.createObjectURL(e.target.files[0]),
+			profileImgURL: URL.createObjectURL(e.target.files[0]),
 			isImageSelected: true
 		});
     };
@@ -61,7 +63,10 @@ export default function UpdateProfile (props) {
     }
 
     uploadImg = () => {
-		if (!this.state.isImageSelected)  return;
+		if (!this.state.isImageSelected) {
+			this.setState({filename: this.state.profileImg})
+			return;
+		} 
 		
         const formData = new FormData();
         formData.append('myFile', this.state.myFile);
@@ -74,7 +79,7 @@ export default function UpdateProfile (props) {
         Axios.post('http://localhost:3001/api/uploads', formData, config).then((res) => {
             this.setState({filename: res.data.file.filename})
             console.log(res.data.file.filename);
-        }).catch((err) => console.log(err));
+        }).catch(err => console.log(err));
 	}
 	
 	handleSubmit = (e) => {
@@ -96,14 +101,13 @@ export default function UpdateProfile (props) {
 					cityName: this.state.cityName,
 					areaLocation: this.state.district
 				},
-				profile: this.state.profile
 			}
 			Axios.put(`http://localhost:3001/api/profiles/${this.state.profileId}`, data)
 			.then(res => {
 				console.log(res.data);
 				this.props.history.push('/profile');
 			})
-		}, 2000);
+		}, 1000);
 		
 	}
 	componentDidMount = () => {
@@ -118,12 +122,16 @@ export default function UpdateProfile (props) {
 				cityName: res.data.address.cityName,
 				firstName: res.data.firstName,
 				lastName: res.data.lastName,
-				profileImg: "http://localhost:3001/uploads/" + res.data.profilePhoto
+				profileImg: res.data.profilePhoto,
+				profileImgURL: "http://localhost:3001/uploads/" + res.data.profilePhoto
 			})
 			Axios.get('http://localhost:3001/api/districts')
 			.then(res => {
 				console.log(res.data);
-				this.setState({districts: res.data});
+				this.setState({
+					districts: res.data,
+					district: res.data[0]._id
+				});
 			}).catch(err => console.log(err));
 		});
 	
@@ -149,7 +157,7 @@ export default function UpdateProfile (props) {
 								<div id='profile-image-cp'>
 									<label id='profile-img-label' htmlFor='profile-img'>Profile Picture</label>
 									<div>
-										<img id='profile-img' src= { this.state.profileImg } alt='Profile'/>
+										<img id='profile-img' src= { this.state.profileImgURL } alt='Profile'/>
 										<div className='upload-btn-wrapper'>
 											<button className='btnFile'>Update pic</button>
 											<input type='file' name='myfile' onChange={this.handleImageChange}/>
@@ -158,7 +166,7 @@ export default function UpdateProfile (props) {
 								</div>
 							</div>
 							<label htmlFor='mobileNo'>Mobile Number</label>
-							<input type='text'id='mobileNo' name='mobileNo'onChange={this.handleChange} value={this.state.mobileNo} />
+							<input type='text'id='mobileNo' name='mobileNo'onChange={ this.handleChange } value={this.state.mobileNo} />
 							<label htmlFor='phoneNo'>Phone No</label>
 							<input type='text'name='phoneNo' onChange={ this.handleChange } value={this.state.phoneNo} />
 							<label htmlFor='hideContact' className='checkbox-container'>
@@ -169,7 +177,6 @@ export default function UpdateProfile (props) {
 							<label htmlFor='areaLocation'>District</label>
 							<div className="select">
 								<select name="district" id="district" onChange={this.handleChange}>
-									<option defaultValue="Choose district">Choose an option</option>
 									{
 										this.state.districts.map(district => {
 										return <option key={district._id} value={district._id}>{district.name}</option>

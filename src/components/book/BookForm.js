@@ -45,7 +45,10 @@ export default class AddBook extends Component {
 	};
 	
 	uploadImg = () => {
-        if (!this.state.isImageSelected)  return;
+        if (!this.state.isImageSelected)  {
+			
+			return;
+		}
         const formData = new FormData();
         formData.append('myFile', this.state.myFile);
         const config = {
@@ -64,7 +67,6 @@ export default class AddBook extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.uploadImg();
-
 		if (this.state.category === '') 
 			this.setState({category: this.state.categories[1]._id});
 
@@ -86,6 +88,7 @@ export default class AddBook extends Component {
 	}
 	
 	componentDidMount = () => {
+		//If user has not logged in then, it will display another view ...
 		try {
 			this.setState( {token: jwtDecode(localStorage.getItem('token'))} ); 
 		} catch (error) {console.log(error)}
@@ -114,8 +117,9 @@ export default class AddBook extends Component {
 
 	render() {
 		if (this.state.submitted) {
-			return <Redirect to='/book' />
+			return <Redirect to='/' />
 		}
+		//if user has not logged in ...
 		if (this.state.token === null || this.state.token === undefined) {
 			return (
 				<>
@@ -124,6 +128,7 @@ export default class AddBook extends Component {
 				</>
 			)
 		}
+		//if user has logged in but havent created profile yet ...
 		if (this.state.token.profileId === null || this.state.token.profileId === undefined) {
 			return(
 				<>
