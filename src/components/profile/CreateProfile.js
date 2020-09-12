@@ -151,7 +151,7 @@ export default class CreateProfileForm extends Component {
 						<label htmlFor='phoneNo'>Phone No</label>
 						<input value={this.phoneNo} type='text'name='phoneNo' onChange={ this.handleChange } />
 						<label htmlFor='hideContact' className='checkbox-container'>
-							<input id='hideContact' type='checkbox'value={this.hideContact} onChange={ this.handleCheckChange }/>
+							<input id='hideContact' type='checkbox' value={this.hideContact} onChange={ this.handleCheckChange }/>
 							<span className='checkmark'/>
 							Hide contacts
 						</label>

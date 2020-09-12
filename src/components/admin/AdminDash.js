@@ -5,14 +5,11 @@ import { Switch, Route } from 'react-router-dom'
 import Navigation from '../navigation/Navigation'
 import './AdminDash.css'
 
-export default class AdminDash extends Component {
-	constructor(props) {
-		super(props)
-	}
-	
+export default class AdminDash extends Component {	
 	handleClick = (route)  => {
 		this.props.history.push('/admin/' + route);
 	}
+	
 	render() {
 		return (
 			<div>

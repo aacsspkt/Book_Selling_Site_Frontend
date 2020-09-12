@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navigation from '../navigation/Navigation'
 import Axios from 'axios'
 import { useParams } from 'react-router-dom'
+import './UpdateProfile.css'
 
 export default function UpdateProfile (props) {
 	let { profileId } = useParams();
@@ -170,7 +171,7 @@ export default function UpdateProfile (props) {
 							<label htmlFor='phoneNo'>Phone No</label>
 							<input type='text'name='phoneNo' onChange={ this.handleChange } value={this.state.phoneNo} />
 							<label htmlFor='hideContact' className='checkbox-container'>
-								<input id='hideContacts' type='checkbox' onChange={ this.handleCheckChange } value={this.state.hideContact} />
+								<input id='hideContacts' type='checkbox' onClick={ this.handleCheckChange } value={this.state.hideContact} />
 								<span className='checkmark'/>
 								Hide contacts
 							</label>

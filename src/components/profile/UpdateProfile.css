@@ -67,7 +67,9 @@
 	opacity: 0;
 	cursor: pointer;
 	height: 0;
-	width: 0;
+	width: 40px;
+	z-index: 100;
+	left: 0;
   }
   
   .checkmark {
