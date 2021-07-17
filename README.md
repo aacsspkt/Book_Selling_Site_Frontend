@@ -1,68 +1,84 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# B-Share (Book Selling E-commerce Site)
+This is Book Selling E-commerce website created by using MERN stack (Mongo-Express-React-NodeJs). 
 
-## Available Scripts
+## Table of contents
+* [General info](#general-info)
+* [Preview](#preview)
+* [Links for repo](#links-for-repos)
+* [Main technologies and libraries used](#main-technologies-and-libraries-used)
+* [Setup](#setup)
 
-In the project directory, you can run:
+## General info
+With this site, a user can sell new as well as old books to any user. This website only provide platform to share information. So, transaction of any books will be done by users from the phone no or email address of their own.
 
-### `npm start`
+## Preview
+<div align="center">
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/splash_screen_user.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/Login.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/signup.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/home_user.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/donate_user.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/confirm_location.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/googlemap.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/Log.jpg" width="300px"</img> 
+    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/profile_user.jpg" width="300px"</img>
+</div>
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Main features
+1. Management of book and category details: like title, description, condition etc and category name. This information is stored in database. This feature is required for storing book detail added by user.
+2. Management of User details like username and password in database. Each user will be assigned with roles either normal or admin. Admin will be able to add new category and district details.
+3. Management of Profile details like first name, last name, profile photo, address and contact. 
+3. Login authentication system where user have to enter correct username and password. JWT Web Token is used for authentication.
+4. Handling API requests like GET, DELETE, PUT and POST.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Links for repos
+* Frontend: https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend.git
+* Backend: https://github.com/rakesh-gyawali/Book_Selling_Site_Backend.git
 
-### `npm test`
+## Main technologies and libraries used
+* react version: 16.13.1
+* react-dom version: 16.13.1
+* react-router-dom version: 5.2.0
+* react-scripts version: 3.4.1
+* axios version: 0.19.2
+* jwt-decode version: 2.2.0
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Setup
+1. Clone all the repos listed above.
+2. Open the backend root folder with terminal and enter `npm install`
+3. Create file named ".env" in backend root folder and copy-paste, change the values and save.
+```
+Port=3001 
+dbURI='YOUR_MongoDB_URL'
+SECRET='REPLACE_WITH_ANY_CHARACTERS'
+```
+4. Enter 'npm start' to run the server.
+5. Open your favouriate API client e.g. postman. Send POST request with given JSON data to this URL `http://localhost:3001/api/users/register/` in order to create ADMIN account.
+```
+{
+  "username": "SET_USERNAME_OF_YOUR_CHOICE",
+  "password": "SET_PASSWORD_OF_YOUR_CHOICE",
+  "email": "SET_EMAIL_OF_YOUR_CHOICE",
+  "role": "admin" 
+}
+```
+6. Login Admin account by sending POST request with given JSON data to this URL `http://localhost:3001/api/users/login/` to get Authentication Token in response. 
+```
+{
+  "username": "USERNAME",
+  "password": "PASSWORD", 
+} 
+```
+12. Copy Token from response and set the token to header as given below (Advanced REST Client was used)
+![image](https://user-images.githubusercontent.com/41475122/126030830-7d8cce1a-21ff-4de2-9190-a5fc4d728d8c.png)
+13. Send Post request with given JSON data to this URL `http://localhost:3001/api/districts` in order to add a district data. District data is required to create a profile for user later. 
+```
+{
+  "name": "Kathmandu" 
+}
+```
+15. Open root folder of front end and enter `npm install` in terminal.
+16. Enter `npm start` to run the website. 
+17. To register a user click signup from the menu and fill all the fields.
+18. Then, go to Login page and fill username and password.
+19. Create profile to post book you want to sell. 
