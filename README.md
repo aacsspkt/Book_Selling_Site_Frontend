@@ -13,15 +13,13 @@ With this site, a user can sell new as well as old books to any user. This websi
 
 ## Preview
 <div align="center">
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/splash_screen_user.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/Login.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/signup.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/home_user.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/donate_user.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/confirm_location.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/googlemap.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/Log.jpg" width="300px"</img> 
-    <img src="https://github.com/rakesh-gyawali/FooDonate_User/blob/master/screenshots/profile_user.jpg" width="300px"</img>
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/home.png" width="600px"</img> 
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/login.png" width="600px"</img> 
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/post_book.png" width="600px"</img> 
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/book_detail.png" width="600px"</img> 
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/post_book.png" width="600px"</img> 
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/view_profile.png" width="600px"</img> 
+    <img src="https://github.com/rakesh-gyawali/Book_Selling_Site_Frontend/blob/master/screenshots/admin_dashboard.png" width="600px"</img> 
 </div>
 
 ## Main features
